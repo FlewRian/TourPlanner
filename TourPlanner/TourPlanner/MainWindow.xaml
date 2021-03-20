@@ -13,8 +13,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -28,9 +26,48 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" VerticalAlignment="Center" >Button</Button>
-            <Button Grid.Column="1" VerticalAlignment="Center" >Button2</Button>
+            <Label Content="Tour" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="14"/>
+            <Button Content="Add" Grid.Column="1" VerticalAlignment="Center" Margin="0 0 5 0"/>
         </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Delete" Grid.Column="0" VerticalAlignment="Center" Margin="5 0 0 0"/>
+            <Label Grid.Column="1"  Content="Search:" VerticalAlignment="Center" Height="25" Margin="35,0,0,0"/>
+        </Grid>
+
+        <Grid Grid.Column="2" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="1" VerticalAlignment="Center" Width="150" HorizontalAlignment="Center" Height="17" />
+
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Tourinfo" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="134"/>
+            <ListBox Grid.Row="1" Margin="10,41,-157,10" Grid.ColumnSpan="2"/>
+
+
+        </Grid>
+
+        <Label Content="Touren" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="140" FontSize="20"/>
+        <ListBox Grid.Row="1" Margin="10,52,10,10" />
 
     </Grid>
 </Window>
+
