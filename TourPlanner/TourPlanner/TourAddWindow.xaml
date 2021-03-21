@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner"
         mc:Ignorable="d"
-        Title="TourAddWindow" Height="450" Width="800">
+        Title="TourAddWindow" Height="250" Width="150">
+    <Window.DataContext>
+        <local:TourAddViewModel/>
+    </Window.DataContext>
     <Grid>
-        
+        <Label Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Tour description" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Rout information" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Tour distance" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </Window>
