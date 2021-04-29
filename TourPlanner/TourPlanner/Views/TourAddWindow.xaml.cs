@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace TourPlanner
+namespace TourPlanner.Views
 {
     /// <summary>
     /// Interaktionslogik für TourAddWindow.xaml

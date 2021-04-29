@@ -1,14 +1,14 @@
-﻿<Window x:Class="TourPlanner.TourAddWindow"
+﻿<Window x:Class="TourPlanner.Views.TourAddWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TourPlanner"
+        xmlns:local="clr-namespace:TourPlanner.Views"
+        xmlns:viewModel="clr-namespace:TourPlanner.Factory.ViewModel"
         mc:Ignorable="d"
-        Title="TourAddWindow" Height="250" Width="150">
-    <Window.DataContext>
-        <local:TourAddViewModel/>
-    </Window.DataContext>
+        Title="TourAddWindow" Height="250" Width="150"
+        viewModel:ViewModelCreator.FactoryType="{x:Type viewModel:TourAddViewModelFactory}">
+
     <Grid>
         <Label Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

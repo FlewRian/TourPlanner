@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TourPlanner
+namespace TourPlanner.ViewModels
 {
-    public interface IWindowFactory
+    class SearchViewModel
     {
-        public void CreateWindow();
     }
 }
