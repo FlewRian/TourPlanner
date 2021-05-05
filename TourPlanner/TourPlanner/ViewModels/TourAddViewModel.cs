@@ -1,6 +1,6 @@
 ﻿namespace TourPlanner.ViewModels
 {
-    class TourAddViewModel
+    public class TourAddViewModel
     {
     }
 }

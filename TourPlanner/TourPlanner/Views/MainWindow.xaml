@@ -21,14 +21,8 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-
-        <Frame Grid.Row="0" Grid.Column="1">
-            <Frame.Content>
-                <views:SearchWindow/>
-            </Frame.Content>
-        </Frame>
         
-        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <Frame.Content>
                 <views:TourListWindow/>
             </Frame.Content>
