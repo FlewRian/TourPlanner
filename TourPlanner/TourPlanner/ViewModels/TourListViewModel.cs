@@ -14,12 +14,12 @@ namespace TourPlanner.ViewModels
 {
     public class TourListViewModel : ViewModelBase
     {
-        public IMediaItemFactory mediaItemFactory;
-        private MediaItem currentItem;
+        public ITourPlannerFactory tourPlannerFactory;
+        private Tour currentItem;
         private readonly IWindowFactory _windowFactoryAddTour;
         public ICommand AddTourCommand => new RelayCommand(AddTour);
 
-        public ObservableCollection<MediaItem> Items { get; set; }
+        public ObservableCollection<Tour> Items { get; set; }
 
         public string searchName;
         private ICommand searchCommand;
@@ -39,7 +39,7 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-        public MediaItem CurrentItem
+        public Tour CurrentItem
         {
             get
             {
@@ -58,19 +58,19 @@ namespace TourPlanner.ViewModels
         public TourListViewModel(IWindowFactory windowFactoryAddTour)
         {
             _windowFactoryAddTour = windowFactoryAddTour;
-            this.mediaItemFactory = MediaItemFactory.GetInstance();
+            this.tourPlannerFactory = TourPlannerFactory.GetInstance();
             InitListbox();
         }
 
         private void InitListbox()
         {
-            Items = new ObservableCollection<MediaItem>();
+            Items = new ObservableCollection<Tour>();
             FillListBox();
         }
 
         public void FillListBox()
         {
-            foreach (MediaItem item in this.mediaItemFactory.GetItems())
+            foreach (Tour item in this.tourPlannerFactory.GetItems())
             {
                 Items.Add(item);
             }
@@ -91,9 +91,9 @@ namespace TourPlanner.ViewModels
 
         private void Search(object commandParameter)
         {
-            IEnumerable foundItems = this.mediaItemFactory.Search(SearchName); 
+            IEnumerable foundItems = this.tourPlannerFactory.Search(SearchName); 
             Items.Clear();
-            foreach (MediaItem item in foundItems)
+            foreach (Tour item in foundItems)
             {
                 Items.Add(item);
             }

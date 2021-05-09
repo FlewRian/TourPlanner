@@ -10,14 +10,14 @@ namespace TourPlanner.ViewModels
     public class SearchViewModel : ViewModelBase
     {
         public string searchName;
-        public IMediaItemFactory mediaItemFactory;
+        public ITourPlannerFactory tourPlannerFactory;
 
         private ICommand searchCommand;
         private ICommand clearCommand;
         public ICommand SearchCommand => searchCommand ??= new RelayCommand(Search);
         public ICommand ClearCommand => clearCommand ??= new RelayCommand(Clear);
 
-        public ObservableCollection<MediaItem> Items { get; set; }
+        public ObservableCollection<Tour> Items { get; set; }
         public string SearchName
         {
             get { return searchName; }
@@ -33,19 +33,19 @@ namespace TourPlanner.ViewModels
 
         public SearchViewModel()
         {
-            this.mediaItemFactory = MediaItemFactory.GetInstance();
+            this.tourPlannerFactory = TourPlannerFactory.GetInstance();
             InitListbox();
         }
 
         private void InitListbox()
         {
-            Items = new ObservableCollection<MediaItem>();
+            Items = new ObservableCollection<Tour>();
             FillListBox();
         }
 
         public void FillListBox()
         {
-            foreach (MediaItem item in this.mediaItemFactory.GetItems())
+            foreach (Tour item in this.tourPlannerFactory.GetItems())
             {
                 Items.Add(item);
             }
@@ -55,9 +55,9 @@ namespace TourPlanner.ViewModels
 
         private void Search(object commandParameter)
         {
-            IEnumerable foundItems = mediaItemFactory.Search(SearchName); 
+            IEnumerable foundItems = tourPlannerFactory.Search(SearchName); 
             Items.Clear();
-            foreach (MediaItem item in foundItems)
+            foreach (Tour item in foundItems)
             {
                 Items.Add(item);
             }
