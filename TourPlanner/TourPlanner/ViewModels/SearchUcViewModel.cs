@@ -49,6 +49,7 @@ namespace TourPlanner.ViewModels
         private void InitListbox()
         {
             Items = new ObservableCollection<Tour>();
+            Debug.WriteLine("Tourliste erstellt");
             FillListBox();
         }
 
@@ -57,6 +58,7 @@ namespace TourPlanner.ViewModels
             foreach (Tour item in this.tourPlannerFactory.GetItems())
             {
                 Items.Add(item);
+                Debug.WriteLine("Tour hinzugefügt");
             }
         }
 
@@ -73,6 +75,7 @@ namespace TourPlanner.ViewModels
 
         private void Clear(object commandParameter)
         {
+            Debug.WriteLine("Reset klicked");
             Items.Clear();
             SearchName = ""; 
             FillListBox();

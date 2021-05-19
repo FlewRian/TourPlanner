@@ -55,9 +55,9 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Content="Tourinfo" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="134"/>
-                <Button Content="Add Log" Margin="0,0,0,0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Command="{Binding AddTourLogCommand}"/>
-                <Button Content="Edit Log" Margin="0,0,0,0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Command="{Binding EditTourLogCommand}"/>
-                <Button Content="Delete Log" Margin="0,0,0,0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Command="{Binding DeleteTourLogCommand}"/>
+                <Button Content="Add Log" Margin="0,0,0,0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Command="{Binding tourInfoUcViewModel.AddTourLogCommand}"/>
+                <Button Content="Edit Log" Margin="0,0,0,0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Command="{Binding tourInfoUcViewModel.EditTourLogCommand}"/>
+                <Button Content="Delete Log" Margin="0,0,0,0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Command="{Binding tourInfoUcViewModel.DeleteTourLogCommand}"/>
             </Grid>
 
 
