@@ -10,19 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TourPlanner.ViewModels;
 
 namespace TourPlanner.Views
 {
     /// <summary>
-    /// Interaktionslogik für SearchWindow.xaml
+    /// Interaktionslogik für TourEditWindow.xaml
     /// </summary>
-    public partial class SearchWindow : Page
+    public partial class TourEditWindow : Window
     {
-        public SearchWindow()
+        public TourEditWindow(MainViewModel mainViewModel)
         {
             InitializeComponent();
+            this.DataContext = new TourEditViewModel(this, mainViewModel);
         }
     }
 }

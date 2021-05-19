@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
 using TourPlanner.Model;
 
-
 namespace TourPlanner.ViewModels
 {
-    public class SearchViewModel : ViewModelBase
+    public class SearchUcViewModel : ViewModelBase
     {
         public string searchName;
         public ITourPlannerFactory tourPlannerFactory;
+
+        private MainViewModel _mainViewModel;
 
         private ICommand searchCommand;
         private ICommand clearCommand;
@@ -31,10 +33,17 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public SearchViewModel()
+        public SearchUcViewModel()
         {
             this.tourPlannerFactory = TourPlannerFactory.GetInstance();
             InitListbox();
+        }
+
+        public SearchUcViewModel(MainViewModel mainViewModel)
+        {
+            this.tourPlannerFactory = TourPlannerFactory.GetInstance();
+            InitListbox();
+            this._mainViewModel = mainViewModel;
         }
 
         private void InitListbox()
@@ -51,10 +60,9 @@ namespace TourPlanner.ViewModels
             }
         }
 
-
-
         private void Search(object commandParameter)
         {
+            Debug.WriteLine("Search klicked");
             IEnumerable foundItems = tourPlannerFactory.Search(SearchName); 
             Items.Clear();
             foreach (Tour item in foundItems)

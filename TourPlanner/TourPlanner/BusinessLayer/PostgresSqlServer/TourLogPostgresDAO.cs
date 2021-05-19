@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using TourPlanner.DataAccessLayer.Common;
 using TourPlanner.DataAccessLayer.DAO;
 using TourPlanner.Model;
 
-namespace TourPlanner.DataAccessLayer.PostgresSQL
+namespace TourPlanner.BusinessLayer.PostgresSqlServer
 {
     public class TourLogPostgresDAO : ITourLogDAO
     {
-        private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"TourLogs\" WHERE \"Id\"=@Id;";
+        /*private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"TourLogs\" WHERE \"Id\"=@Id;";
         private const string SQL_FIND_BY_TOURID = "SELECT * FROM public.\"TourLogs\" WHERE \"TourId\"=@TourId;";
         private const string SQL_INSERT_NEW_TOURLOG =
             "INSERT INTO public.\"TourLogs\" (\"Name\", \"Description\", \"Report\", \"Vehicle\", \"DateTime\", \"TourId\", \"Distance\", \"TotalTime\", \"Rating\") " +
+            "VALUES (@Name, @Description, @Report, @Vehicle, @DateTime, @TourId, @Distance, @TotalTime, @Rating);";*/
+
+        private const string SQL_FIND_BY_ID = "SELECT * FROM \"tourLogs\" WHERE \"Id\"=@Id;";
+        private const string SQL_FIND_BY_TOURID = "SELECT * FROM \"tourLogs\" WHERE \"TourId\"=@TourId;";
+        private const string SQL_INSERT_NEW_TOURLOG =
+            "INSERT INTO \"tourLogs\" (\"Name\", \"Description\", \"Report\", \"Vehicle\", \"DateTime\", \"TourId\", \"Distance\", \"TotalTime\", \"Rating\") " +
             "VALUES (@Name, @Description, @Report, @Vehicle, @DateTime, @TourId, @Distance, @TotalTime, @Rating);";
 
         private IDatabase database;

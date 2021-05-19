@@ -3,14 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:TourPlanner.Views"
         xmlns:local="clr-namespace:TourPlanner"
         xmlns:viewModels="clr-namespace:TourPlanner.ViewModels"
         xmlns:views="clr-namespace:TourPlanner.Views"
+
         mc:Ignorable="d"
-        Title="TourPlanner-V 0.1" Height="450" Width="500">
-    <Window.DataContext>
-        <viewModels:MainViewModel/>
-    </Window.DataContext>
+        Title="TourPlanner-V 0.1" Height="600" Width="1000">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,20 +19,20 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         
-        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <Frame.Content>
-                <views:TourListWindow/>
-            </Frame.Content>
-        </Frame>
+        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+            <uc:TourListUserControl/>
+        </Grid>
 
-        <Frame Grid.Row="1" Grid.Column="1">
-            <Frame.Content>
-                <views:TourInfoWindow/>
-            </Frame.Content>
-        </Frame>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <uc:SearchUserControl/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <uc:TourInfoUserControl/>
+        </Grid>
 
     </Grid>
 </Window>

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.CodeDom;
 using System.Data;
 using System.Data.Common;
 using Npgsql;
 using TourPlanner.DataAccessLayer.Common;
 
-namespace TourPlanner.DataAccessLayer.PostgresSQL
+namespace TourPlanner.BusinessLayer.PostgresSqlServer
 {
     public class Database : IDatabase
     {

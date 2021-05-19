@@ -3,11 +3,11 @@ using TourPlanner.Views;
 
 namespace TourPlanner.Factory.Window
 {
-    class TourAddWindowFactory : IWindowFactory
+    class TourEditWindowFactory : IWindowFactory
     {
         public System.Windows.Window GetWindow(MainViewModel mainViewModel)
         {
-            TourAddWindow view = new TourAddWindow(mainViewModel);
+            TourEditWindow view = new TourEditWindow(mainViewModel);
             return view;
         }
     }

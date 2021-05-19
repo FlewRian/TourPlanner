@@ -1,0 +1,40 @@
+﻿<Window x:Class="TourPlanner.Views.TourEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TourPlanner.Views"
+        mc:Ignorable="d"
+        Title="TourEditWindow" Height="300" Width="300">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Label Content="Old Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
+            <Label Content="Old Tour description" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
+            <Label Content="Old Start" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
+            <Label Content="Old End" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Label Content="New Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+            <Label Content="New Tour description" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+            <Label Content="New Start" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+            <Label Content="New End" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+            <Button Content="Update" Margin="10,209,0,0" Width="60" HorizontalAlignment="Left" FontSize="12" Height="20" VerticalAlignment="Top"/>
+            <Button Content="Cancel" Margin="0,209,10,0" Height="20" Width="60" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="12"/>
+        </Grid>
+    </Grid>
+</Window>

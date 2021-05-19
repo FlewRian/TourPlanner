@@ -4,20 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner.Views"
-        xmlns:viewModel="clr-namespace:TourPlanner.Factory.ViewModel"
+        xmlns:tourPlanner="clr-namespace:TourPlanner"
         mc:Ignorable="d"
-        Title="TourAddWindow" Height="250" Width="150"
-        viewModel:ViewModelCreator.FactoryType="{x:Type viewModel:TourAddViewModelFactory}">
+        Title="TourAddWindow" Height="300" Width="200">
 
     <Grid>
         <Label Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" 
+                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="Tour description" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Rout information" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Tour distance" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+                 Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Start" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+                 Text="{Binding Start, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="End" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+                 Text="{Binding End, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Save" Margin="10,209,0,0" Width="60" HorizontalAlignment="Left" FontSize="12" Height="20" VerticalAlignment="Top" Command="{Binding SaveTourCommand}"/>
+        <Button Content="Cancel" Margin="80,209,0,0" Height="20" VerticalAlignment="Top" FontSize="12" HorizontalAlignment="Left" Width="60" Command="{Binding CancelTourAddCommand}"/>
 
     </Grid>
 </Window>

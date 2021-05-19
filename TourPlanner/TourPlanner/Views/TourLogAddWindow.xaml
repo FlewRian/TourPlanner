@@ -1,0 +1,30 @@
+﻿<Window x:Class="TourPlanner.Views.TourLogAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TourPlanner.Views"
+        mc:Ignorable="d"
+        Title="TourLogAddWindow" Height="500" Width="200">
+
+    <Grid>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+        <Label Content="Log description" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+        <Label Content="Report" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+        <Label Content="Vehicle" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+        <Label Content="DateTime" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+        <Label Content="Distance in km" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+        <Label Content="Totaltime" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+        <Label Content="Rating 1-10" HorizontalAlignment="Left" Margin="10,353,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+        <Button Content="Save" Margin="10,410,0,0" Width="60" HorizontalAlignment="Left" FontSize="12" Height="20" VerticalAlignment="Top"/>
+        <Button Content="Cancel" Margin="80,410,0,0" Height="20" VerticalAlignment="Top" FontSize="12" HorizontalAlignment="Left" Width="60"/>
+    </Grid>
+</Window>
