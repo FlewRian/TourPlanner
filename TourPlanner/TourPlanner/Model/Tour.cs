@@ -13,14 +13,16 @@ namespace TourPlanner.Model
         public string Description { get; set; }
         public string Start { get; set; }
         public string End { get; set; }
+        public int Distance { get; set; }
 
-        public Tour(int id, string name, string description, string start, string end)
+        public Tour(int id, string name, string description, string start, string end, int distance)
         {
             this.Id = id;
             this.Name = name;
             this.Description = description;
             this.Start = start;
             this.End = end;
+            this.Distance = distance;
         }
     }
 }
