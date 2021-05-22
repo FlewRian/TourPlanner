@@ -18,8 +18,8 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
 
         private const string SQL_FIND_BY_ID = "SELECT * FROM \"tours\" WHERE \"id\"=@id;";
         private const string SQL_GET_ALL_TOURS = "SELECT * FROM \"tours\";";
-        private const string SQL_INSERT_NEW_TOUR = "INSERT INTO \"tours\" (\"name\", \"description\", \"start\", \"end\") " +
-                                                   "VALUES (@name, @description, @start, @end) " +
+        private const string SQL_INSERT_NEW_TOUR = "INSERT INTO \"tours\" (\"name\", \"description\", \"start\", \"end\", \"distance\") " +
+                                                   "VALUES (@name, @description, @start, @end, @distance) " +
                                                    "RETURNING \"id\";";
 
         
@@ -35,13 +35,14 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
             this.database = database;
         }
 
-        public Tour AddNewItem(string name, string description, string start, string end)
+        public Tour AddNewItem(string name, string description, string start, string end, int distance)
         {
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT_NEW_TOUR);
             database.DefineParameter(insertCommand, "@name", DbType.String, name);
             database.DefineParameter(insertCommand, "@description", DbType.String, description);
             database.DefineParameter(insertCommand, "@start", DbType.String, start);
             database.DefineParameter(insertCommand, "@end", DbType.String, end);
+            database.DefineParameter(insertCommand, "@distance", DbType.Int32, distance);
 
             return FindById(database.ExecuteScalar(insertCommand));
         }
@@ -75,7 +76,8 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
                         (string)reader["name"],
                         (string)reader["description"],
                         (string)reader["start"],
-                        (string)reader["end"]
+                        (string)reader["end"],
+                        (int)reader["distance"]
                     ));
                 }
             }

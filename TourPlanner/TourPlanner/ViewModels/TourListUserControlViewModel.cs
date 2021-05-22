@@ -28,6 +28,7 @@ namespace TourPlanner.ViewModels
                 if ((_currentItem != value) && (value != null))
                 {
                     _currentItem = value;
+                    Debug.WriteLine("CurrentItem was changed");
                     RaisePropertyChangedEvent(nameof(CurrentItem));
                 }   
             }

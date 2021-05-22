@@ -28,10 +28,10 @@ namespace TourPlanner.BusinessLayer
             return items.Where(x => x.Name.ToLower().Contains(itemName.ToLower()));
         }
 
-        public Tour CreateTour(string name, string description, string start, string end)
+        public Tour CreateTour(string name, string description, string start, string end, int distance)
         {
             ITourDAO tourDAO = DALFactory.CreateTourDAO();
-            return tourDAO.AddNewItem(name, description, start, end);
+            return tourDAO.AddNewItem(name, description, start, end, distance);
         }
 
         public TourLog CreateTourLog(string name, string description, string report, string vehicle, DateTime dateTime,

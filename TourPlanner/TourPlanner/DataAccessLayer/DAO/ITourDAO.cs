@@ -7,7 +7,7 @@ namespace TourPlanner.DataAccessLayer.DAO
     public interface ITourDAO
     {
         Tour FindById(int itemId);
-        Tour AddNewItem(string name, string description, string start, string end);
+        Tour AddNewItem(string name, string description, string start, string end, int distance);
         IEnumerable<Tour> GetTours();
     }
 }
