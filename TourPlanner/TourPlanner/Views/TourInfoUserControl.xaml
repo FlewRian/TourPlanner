@@ -8,84 +8,24 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="Tourinfo" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="134"/>
-                <DataGrid Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding tourListUcViewModel.CurrentItem}" >
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding tourListUcViewModel.CurrentItem.Name}" Header="Tour" Width="Auto">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style>
-                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding TourPlanner.Model.Tour.Description}" Header="Description" Width="Auto">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style>
-                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding TourPlanner.Model.Tour.Start}" Header="Start" Width="Auto">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style>
-                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding TourPlanner.Model.Tour.End}" Header="End" Width="Auto">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style>
-                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-
-            <Grid Grid.Column="1">
-                <Image />
-            </Grid>
-        </Grid>
-
-        <Grid Grid.Row="1">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="6*"/>
             </Grid.RowDefinitions>
 
-            <Grid>
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Content="TourLog" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="134"/>
-                <Button Content="Add Log" Margin="0,0,0,0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Command="{Binding tourInfoUcViewModel.AddTourLogCommand}"/>
-                <Button Content="Edit Log" Margin="0,0,0,0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Command="{Binding tourInfoUcViewModel.EditTourLogCommand}"/>
-                <Button Content="Delete Log" Margin="0,0,0,0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Command="{Binding tourInfoUcViewModel.DeleteTourLogCommand}"/>
+                <Label Grid.Column="0" Grid.Row="0" Content="TourLog" Margin="5 0 5 10" VerticalAlignment="Top" HorizontalAlignment="Left" Width="134"/>
+                <Button Content="Add Log"    Grid.Column="1" Margin="5 0 5 10" VerticalAlignment="Bottom" Command="{Binding tourInfoUcViewModel.AddTourLogCommand}"/>
+                <Button Content="Edit Log"   Grid.Column="2" Margin="5 0 5 10" VerticalAlignment="Bottom" Command="{Binding tourInfoUcViewModel.EditTourLogCommand}"/>
+                <Button Content="Delete Log" Grid.Column="3" Margin="5 0 5 10" VerticalAlignment="Bottom" Command="{Binding tourInfoUcViewModel.DeleteTourLogCommand}"/>
             </Grid>
 
 

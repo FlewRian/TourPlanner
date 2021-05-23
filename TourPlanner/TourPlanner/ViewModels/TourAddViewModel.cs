@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using TourPlanner.BusinessLayer;
 using TourPlanner.BusinessLayer.PostgresSqlServer;
 using TourPlanner.Model;
 
@@ -16,7 +17,8 @@ namespace TourPlanner.ViewModels
         private int _distance;
         private Window _window;
 
-        private TourPostgresDAO tourPostgresDao;
+        //private TourPostgresDAO tourPostgresDao;
+        private ITourPlannerFactory _tourPlannerFactory;
         private MainViewModel _mainViewModel;
         private Tour _newTour;
 
@@ -27,18 +29,19 @@ namespace TourPlanner.ViewModels
         {
             this._mainViewModel = mainViewModel;
             this._window = window;
-            this.tourPostgresDao = new TourPostgresDAO();
+            //this.tourPostgresDao = new TourPostgresDAO();
+            this._tourPlannerFactory = TourPlannerFactory.GetInstance();
         }
 
         public TourAddViewModel()
         {
-            this.tourPostgresDao = new TourPostgresDAO();
+            this._tourPlannerFactory = TourPlannerFactory.GetInstance();
         }
 
         public TourAddViewModel(Window window)
         {
             this._window = window;
-            this.tourPostgresDao = new TourPostgresDAO();
+            this._tourPlannerFactory = TourPlannerFactory.GetInstance();
         }
 
         public string Name
@@ -108,7 +111,7 @@ namespace TourPlanner.ViewModels
         private void SaveTour(object obj)
         {
             Debug.WriteLine("Save Tour klicked");
-            _newTour = tourPostgresDao.AddNewItem(this.Name, this.Description, this.Start, this.End, this.Distance);
+            _newTour = _tourPlannerFactory.AddNewItem(this.Name, this.Description, this.Start, this.End, this.Distance);
             _mainViewModel.searchUcViewModel.Items.Add(_newTour);
             _window.Close();
         }
