@@ -25,6 +25,10 @@ namespace TourPlanner.BusinessLayer
                 return items.Where(x => x.Name.Contains(itemName));
             }
 
+            if (itemName == null)
+            {
+                return items;
+            }
             return items.Where(x => x.Name.ToLower().Contains(itemName.ToLower()));
         }
 
@@ -40,6 +44,24 @@ namespace TourPlanner.BusinessLayer
             ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
             return tourLogDAO.AddNewTourLog(name, description, report, vehicle, dateTime, tourId, distance, totalTime,
                 rating);
+        }
+
+        public void DeleteTour(Tour tour)
+        {
+            ITourDAO tourDao = DALFactory.CreateTourDAO();
+            tourDao.DeleteTour(tour);
+        }
+
+        public Tour AddNewItem(string name, string description, string start, string end, int distance)
+        {
+            ITourDAO tourDao = DALFactory.CreateTourDAO();
+            return tourDao.AddNewItem(name, description, start, end, distance);
+        }
+
+        public Tour EditTour(Tour currentTour, string newName, string newDescription, string newStart, string newEnd, int newDistance)
+        {
+            ITourDAO tourDao = DALFactory.CreateTourDAO();
+            return tourDao.EditTour(currentTour, newName, newDescription, newStart, newEnd, newDistance);
         }
     }
 }

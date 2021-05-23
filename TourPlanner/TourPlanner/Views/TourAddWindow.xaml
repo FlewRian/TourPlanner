@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TourPlanner.Views"
         xmlns:tourPlanner="clr-namespace:TourPlanner"
         mc:Ignorable="d"
-        Title="TourAddWindow" Height="300" Width="200">
+        Title="TourAddWindow" Height="350" Width="200">
 
     <Grid>
         <Label Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
@@ -21,8 +21,11 @@
         <Label Content="End" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
                  Text="{Binding End, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Content="Save" Margin="10,209,0,0" Width="60" HorizontalAlignment="Left" FontSize="12" Height="20" VerticalAlignment="Top" Command="{Binding SaveTourCommand}"/>
-        <Button Content="Cancel" Margin="80,209,0,0" Height="20" VerticalAlignment="Top" FontSize="12" HorizontalAlignment="Left" Width="60" Command="{Binding CancelTourAddCommand}"/>
+        <Label Content="Distance" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+                 Text="{Binding Distance, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Save" Margin="10,260,0,0" Width="60" HorizontalAlignment="Left" FontSize="12" Height="20" VerticalAlignment="Top" Command="{Binding SaveTourCommand}"/>
+        <Button Content="Cancel" Margin="80,260,0,0" Height="20" VerticalAlignment="Top" FontSize="12" HorizontalAlignment="Left" Width="60" Command="{Binding CancelTourAddCommand}"/>
 
     </Grid>
 </Window>
