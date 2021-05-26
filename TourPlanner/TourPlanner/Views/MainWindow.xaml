@@ -9,7 +9,7 @@
         xmlns:views="clr-namespace:TourPlanner.Views"
 
         mc:Ignorable="d"
-        Title="TourPlanner-V 0.1" Height="600" Width="1000">
+        Title="TourPlanner-V 0.1" Height="600" Width="1100">
 
     <Grid>
         <Grid.RowDefinitions>

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
@@ -33,6 +34,8 @@ namespace TourPlanner.ViewModels
                     _currentItem = value;
                     Debug.WriteLine("CurrentItem was changed");
                     RaisePropertyChangedEvent(nameof(CurrentItem));
+
+                    _mainViewModel.tourInfoUcViewModel.FillTourLogListBox(_currentItem);
                 }   
             }
         }

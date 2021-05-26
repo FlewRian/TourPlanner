@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Linq;
 using TourPlanner.DataAccessLayer.Common;
 using TourPlanner.DataAccessLayer.DAO;
@@ -17,65 +18,82 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
             "INSERT INTO public.\"TourLogs\" (\"Name\", \"Description\", \"Report\", \"Vehicle\", \"DateTime\", \"TourId\", \"Distance\", \"TotalTime\", \"Rating\") " +
             "VALUES (@Name, @Description, @Report, @Vehicle, @DateTime, @TourId, @Distance, @TotalTime, @Rating);";*/
 
-        private const string SQL_FIND_BY_ID = "SELECT * FROM \"tourLogs\" WHERE \"Id\"=@Id;";
-        private const string SQL_FIND_BY_TOURID = "SELECT * FROM \"tourLogs\" WHERE \"TourId\"=@TourId;";
+        private const string SQL_FIND_BY_ID = "SELECT * FROM \"tourlogs\" WHERE \"id\"=@id;";
+        private const string SQL_FIND_BY_TOURID = "SELECT * FROM \"tourlogs\" WHERE \"tourid\"=@tourid;";
         private const string SQL_INSERT_NEW_TOURLOG =
-            "INSERT INTO \"tourLogs\" (\"Name\", \"Description\", \"Report\", \"Vehicle\", \"DateTime\", \"TourId\", \"Distance\", \"TotalTime\", \"Rating\") " +
-            "VALUES (@Name, @Description, @Report, @Vehicle, @DateTime, @TourId, @Distance, @TotalTime, @Rating);";
+            "INSERT INTO \"tourlogs\" (\"name\", \"description\", \"report\", \"vehicle\", \"datetime\", \"tourid\", \"distance\", \"totaltime\", \"rating\") " +
+            "VALUES (@name, @description, @report, @vehicle, @datetime, @tourid, @distance, @totaltime, @rating) " +
+            "RETURNING \"id\";";
+        private const string SQL_DELETE_TOURLOG = "DELETE FROM \"tourlogs\" WHERE \"id\"=@id;";
+        private const string SQL_EDIT_TOURLOG = "UPDATE \"tours\" SET " +
+                                             "\"name\"=@name, \"description\"=@description, \"report\"=@report, \"vehicle\"=@vehicle, " +
+                                             "\"datetime\"=@datetime, \"tourid\"=@tourid, \"distance\"=@distance, \"totaltime\"=@totaltime, \"rating\"=@rating " +
+                                             "WHERE \"id\"=@id RETURNING \"id\";";
 
-        private IDatabase database;
-        private ITourDAO tourDAO;
+        private IDatabase _database;
 
         public TourLogPostgresDAO()
         {
-            this.database = DALFactory.GetDatabase();
-            this.tourDAO = DALFactory.CreateTourDAO();
+            this._database = DALFactory.GetDatabase();
         }
 
         public TourLogPostgresDAO(IDatabase database, ITourDAO tourDao)
         {
-            this.database = database;
-            this.tourDAO = tourDao;
+            this._database = database;
         }
 
-        public TourLog AddNewTourLog(string name, string description, string report, string vehicle, DateTime dateTime, int tourId, double distance, double totalTime, int rating)
+        public TourLog AddNewTourLog(string name, string description, string report, string vehicle, string dateTime, int tourId, decimal distance, decimal totalTime, int rating)
         {
-            DbCommand insertCommand = database.CreateCommand(SQL_INSERT_NEW_TOURLOG);
-            database.DefineParameter(insertCommand, "@Name", DbType.String, name);
-            database.DefineParameter(insertCommand, "@Description", DbType.String, description);
-            database.DefineParameter(insertCommand, "@Report", DbType.String, report); 
-            database.DefineParameter(insertCommand, "@Vehicle", DbType.String, vehicle);
-            database.DefineParameter(insertCommand, "@DateTime", DbType.String, dateTime.ToString());
-            database.DefineParameter(insertCommand, "@TourId", DbType.Int32, tourId);
-            database.DefineParameter(insertCommand, "@Distance", DbType.Double, distance);
-            database.DefineParameter(insertCommand, "@TotalTime", DbType.Double, totalTime);
-            database.DefineParameter(insertCommand, "@Rating", DbType.Int32, rating);
+            DbCommand insertCommand = _database.CreateCommand(SQL_INSERT_NEW_TOURLOG);
+            _database.DefineParameter(insertCommand, "@name", DbType.String, name);
+            _database.DefineParameter(insertCommand, "@description", DbType.String, description);
+            _database.DefineParameter(insertCommand, "@report", DbType.String, report); 
+            _database.DefineParameter(insertCommand, "@vehicle", DbType.String, vehicle);
+            _database.DefineParameter(insertCommand, "@datetime", DbType.String, dateTime);
+            _database.DefineParameter(insertCommand, "@tourid", DbType.Int32, tourId);
+            _database.DefineParameter(insertCommand, "@distance", DbType.Decimal, distance);
+            _database.DefineParameter(insertCommand, "@totaltime", DbType.Decimal, totalTime);
+            _database.DefineParameter(insertCommand, "@rating", DbType.Int32, rating);
 
-            return FindById(database.ExecuteScalar(insertCommand));
+            return FindById(_database.ExecuteScalar(insertCommand));
         }
 
         public TourLog FindById(int logId)
         {
-            DbCommand findCommand = database.CreateCommand(SQL_FIND_BY_ID);
-            database.DefineParameter(findCommand, "@Id", DbType.Int32, logId);
+            DbCommand findCommand = _database.CreateCommand(SQL_FIND_BY_ID);
+            _database.DefineParameter(findCommand, "@id", DbType.Int32, logId);
 
-            IEnumerable<TourLog> tourlogList = QueryMediaLogsFromDb(findCommand);
+            IEnumerable<TourLog> tourlogList = QueryTourLogsFromDb(findCommand);
             return tourlogList.FirstOrDefault();
         }
 
         public IEnumerable<TourLog> GetLogsForTour(int tourId)
         {
-            DbCommand getLogsCommand = database.CreateCommand(SQL_FIND_BY_TOURID);
-            database.DefineParameter(getLogsCommand, "@TourId", DbType.Int32, tourId);
+            DbCommand getLogsCommand = _database.CreateCommand(SQL_FIND_BY_TOURID);
+            _database.DefineParameter(getLogsCommand, "@tourid", DbType.Int32, tourId);
 
-            return QueryMediaLogsFromDb(getLogsCommand);
+            return QueryTourLogsFromDb(getLogsCommand);
         }
 
-        private IEnumerable<TourLog> QueryMediaLogsFromDb(DbCommand command)
+        public IEnumerable<TourLog> GetTourLogs(Tour tour)
+        {
+            int tourid = tour.Id;
+            return GetLogsForTour(tourid);
+        }
+
+        public void DeleteTourLog(TourLog tourLog)
+        {
+            DbCommand deleteCommand = _database.CreateCommand(SQL_DELETE_TOURLOG);
+            _database.DefineParameter(deleteCommand, "@id", DbType.Int32, tourLog.Id);
+            Debug.WriteLine("TourLog deleted");
+            _database.ExecuteScalar(deleteCommand);
+        }
+
+        private IEnumerable<TourLog> QueryTourLogsFromDb(DbCommand command)
         {
             List<TourLog> tourLogList = new List<TourLog>();
 
-            using (IDataReader reader = database.ExecuteReader(command))
+            using (IDataReader reader = _database.ExecuteReader(command))
             {
                 while (reader.Read())
                 {
@@ -85,10 +103,10 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
                         (string)reader["Description"],
                         (string)reader["Report"],
                         (string)reader["Vehicle"],
-                        DateTime.Parse(reader["DateTime"].ToString()),
+                       (string)reader["DateTime"],
                         (int)reader["TourId"],
-                        (int)reader["Distance"],
-                        (int)reader["TotalTime"],
+                        (decimal)reader["Distance"],
+                        (decimal)reader["TotalTime"],
                         (int)reader["Rating"]
                     ));
                 }

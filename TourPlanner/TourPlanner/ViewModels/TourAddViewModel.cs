@@ -23,7 +23,7 @@ namespace TourPlanner.ViewModels
         private Tour _newTour;
 
         public ICommand SaveTourCommand => new RelayCommand(SaveTour);
-        public ICommand CancelAddTourCommand => new RelayCommand(CancelAddTour);
+        public ICommand CancelTourAddCommand => new RelayCommand(CancelAddTour);
 
         public TourAddViewModel(Window window, MainViewModel mainViewModel)
         {

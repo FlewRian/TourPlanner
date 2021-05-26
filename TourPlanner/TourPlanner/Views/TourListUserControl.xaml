@@ -37,8 +37,9 @@
                       CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
                       SelectedItem="{Binding tourListUcViewModel.CurrentItem, Mode=TwoWay}">
 
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="1*">
+                    <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="*">
                         <DataGridTextColumn.ElementStyle>
                             <Style>
                                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -46,7 +47,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Start}" Header="Start" Width="1*">
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="2*">
                         <DataGridTextColumn.ElementStyle>
                             <Style>
                                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -54,7 +55,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding End}" Header="End" Width="1*">
+                    <DataGridTextColumn Binding="{Binding Start}" Header="Start" Width="2*">
                         <DataGridTextColumn.ElementStyle>
                             <Style>
                                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -62,7 +63,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="2*">
+                    <DataGridTextColumn Binding="{Binding End}" Header="End" Width="2*">
                         <DataGridTextColumn.ElementStyle>
                             <Style>
                                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -70,7 +71,15 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Distance}" Header="Distance (km)" Width="1*">
+                    <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="4*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Distance}" Header="Distance (km)" Width="2*">
                         <DataGridTextColumn.ElementStyle>
                             <Style>
                                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />

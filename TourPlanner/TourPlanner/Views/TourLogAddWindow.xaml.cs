@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TourPlanner.Model;
+using TourPlanner.ViewModels;
 
 namespace TourPlanner.Views
 {
@@ -19,9 +21,10 @@ namespace TourPlanner.Views
     /// </summary>
     public partial class TourLogAddWindow : Window
     {
-        public TourLogAddWindow()
+        public TourLogAddWindow(Tour currentTour, MainViewModel mainViewModel)
         {
             InitializeComponent();
+            this.DataContext = new TourLogAddViewModel(currentTour,this, mainViewModel);
         }
     }
 }

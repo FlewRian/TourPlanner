@@ -29,18 +29,93 @@
             </Grid>
 
 
-            <DataGrid Grid.Row="1" IsReadOnly="True" ItemsSource="{Binding TourLog}">
+            <DataGrid Grid.Row="1" ItemsSource="{Binding tourInfoUcViewModel.TourLogs}" 
+                      AutoGenerateColumns="False" 
+                      AlternatingRowBackground="LightGray"
+                      CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+                      SelectedItem="{Binding tourInfoUcViewModel.CurrentTourLog, Mode=TwoWay}">
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Log" Width="Auto"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="Auto"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Report}" Header="Report" Width="Auto"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Vehicle}" Header="Vehicle" Width="Auto"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding DateTime}" Header="Date/Time" Width="Auto"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding TourName}" Header="Tour" Width="Auto"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Distance}" Header="Distance (km)" Width="Auto"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding TotalTime}" Header="Total Time (hours)" Width="Auto"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Speed}" Header="Speed (km/h)" Width="Auto"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Rating}" Header="Rating" Width="Auto"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Log" Width="2*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="4*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Report}" Header="Report" Width="4*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Vehicle}" Header="Vehicle" Width="2*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding DateTime}" Header="Date/Time" Width="2*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding TourId}" Header="TourId" Width="*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Distance}" Header="Distance (km)" Width="2*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding TotalTime}" Header="Total Time (hours)" Width="3*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Speed}" Header="Speed (km/h)" Width="2*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Rating}" Header="Rating (0-10)" Width="2*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

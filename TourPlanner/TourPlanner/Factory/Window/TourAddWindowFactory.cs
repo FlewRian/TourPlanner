@@ -4,7 +4,7 @@ using TourPlanner.Views;
 
 namespace TourPlanner.Factory.Window
 {
-    class TourAddWindowFactory : IWindowFactory
+    public class TourAddWindowFactory : IWindowFactory
     {
         public System.Windows.Window GetWindow(MainViewModel mainViewModel)
         {
