@@ -36,7 +36,7 @@ namespace TourPlanner.ViewModels
         public TourLogAddViewModel(Tour currentTour, Window window, MainViewModel mainViewModel)
         {
             this._currentTour = currentTour;
-            this._tourId = this._currentTour.Id;
+            this.TourId = this._currentTour.Id;
             this._mainViewModel = mainViewModel;
             this._window = window;
             this._tourPlannerFactory = TourPlannerFactory.GetInstance();

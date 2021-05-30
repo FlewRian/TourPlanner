@@ -19,5 +19,8 @@ namespace TourPlanner.BusinessLayer
             int tourId, decimal distance, decimal totalTime, int rating);
         Tour EditTour(Tour currentTour, string newName, string newDescription, string newStart, string newEnd, int newDistance);
 
+        TourLog EditTourLog(TourLog currentTourLog, string name, string description, string report,
+            string vehicle, string dateTime, int tourId, decimal distance, decimal totalTime, int rating);
+
     }
 }

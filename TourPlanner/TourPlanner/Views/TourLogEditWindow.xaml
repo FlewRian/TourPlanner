@@ -5,52 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner.Views"
         mc:Ignorable="d"
-        Title="TourLogEditWindow" Height="500" Width="400">
+        Title="TourLogEditWindow" Height="550" Width="250">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Column="0">
-            <Label Content="Old Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
-            <Label Content="Old Log description" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" />
-            <TextBox HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
-            <Label Content="Old Report" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
-            <Label Content="Old Vehicle" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
-            <Label Content="Old DateTime" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
-            <Label Content="Old Distance in km" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
-            <Label Content="Old Totaltime" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
-            <Label Content="Old Rating 1-10" HorizontalAlignment="Left" Margin="10,353,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
-        </Grid>
-        
-        <Grid Grid.Column="1">
-            <Label Content="New Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-            <Label Content="New Log description" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-            <Label Content="New Report" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-            <Label Content="New Vehicle" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-            <Label Content="New DateTime" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-            <Label Content="New Distance in km" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-            <Label Content="New Totaltime" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-            <Label Content="New Rating 1-10" HorizontalAlignment="Left" Margin="10,353,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-            <Button Content="Update" Margin="10,410,0,0" Width="60" HorizontalAlignment="Left" FontSize="12" Height="20" VerticalAlignment="Top"/>
-            <Button Content="Cancel" Margin="80,410,0,0" Height="20" VerticalAlignment="Top" FontSize="12" HorizontalAlignment="Left" Width="60"/>
-        </Grid>
+        <Label Content="Log Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,36,10,0" VerticalAlignment="Top" 
+                 Text="{Binding Name, Mode=TwoWay}"/>
+        <Label Content="Log description" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,85,10,0" VerticalAlignment="Top"
+                 Text="{Binding Description, Mode=TwoWay}"/>
+        <Label Content="Report" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,134,10,0" VerticalAlignment="Top"
+                 Text="{Binding Report, Mode=TwoWay}"/>
+        <Label Content="Vehicle" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,183,10,0" VerticalAlignment="Top"
+                 Text="{Binding Vehicle, Mode=TwoWay}"/>
+        <Label Content="Date" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,232,10,0" VerticalAlignment="Top"
+                 Text="{Binding DateTime, Mode=TwoWay}"/>
+        <Label Content="Distance (km)" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,281,10,0" VerticalAlignment="Top"
+                 Text="{Binding Distance, Mode=TwoWay}"/>
+        <Label Content="Totaltime (h)" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,330,10,0" VerticalAlignment="Top"
+                 Text="{Binding TotalTime, Mode=TwoWay}"/>
+        <Label Content="Rating (1-10)" HorizontalAlignment="Left" Margin="10,353,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,379,10,0" VerticalAlignment="Top"
+                 Text="{Binding Rating, Mode=TwoWay}"/>
+        <Label Content="TourID" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,428,10,0" VerticalAlignment="Top" IsReadOnly="True"
+                 Text="{Binding TourId}"/>
+        <Button Content="Update" Margin="10,459,0,0" Width="100" Height="20" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                Command="{Binding UpdateTourLogCommand}"/>
+        <Button Content="Cancel" Margin="130,459,0,0" Width="100" Height="20" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Left"
+                Command="{Binding CancelTourLogEditCommand}"/>
     </Grid>
 </Window>

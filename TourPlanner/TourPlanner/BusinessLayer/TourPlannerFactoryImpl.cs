@@ -81,6 +81,14 @@ namespace TourPlanner.BusinessLayer
             ITourDAO tourDao = DALFactory.CreateTourDAO();
             return tourDao.EditTour(currentTour, newName, newDescription, newStart, newEnd, newDistance);
         }
+
+        public TourLog EditTourLog(TourLog currentTourLog, string name, string description, string report,
+            string vehicle, string dateTime, int tourId, decimal distance, decimal totalTime, int rating)
+        {
+            ITourLogDAO tourLogDao = DALFactory.CreateTourLogDAO();
+            return tourLogDao.EditTourLog(currentTourLog, name, description, report, vehicle, dateTime, tourId,
+                distance, totalTime, rating);
+        }
     }
 }
     

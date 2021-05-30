@@ -25,7 +25,7 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
             "VALUES (@name, @description, @report, @vehicle, @datetime, @tourid, @distance, @totaltime, @rating) " +
             "RETURNING \"id\";";
         private const string SQL_DELETE_TOURLOG = "DELETE FROM \"tourlogs\" WHERE \"id\"=@id;";
-        private const string SQL_EDIT_TOURLOG = "UPDATE \"tours\" SET " +
+        private const string SQL_EDIT_TOURLOG = "UPDATE \"tourlogs\" SET " +
                                              "\"name\"=@name, \"description\"=@description, \"report\"=@report, \"vehicle\"=@vehicle, " +
                                              "\"datetime\"=@datetime, \"tourid\"=@tourid, \"distance\"=@distance, \"totaltime\"=@totaltime, \"rating\"=@rating " +
                                              "WHERE \"id\"=@id RETURNING \"id\";";
@@ -87,6 +87,26 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
             _database.DefineParameter(deleteCommand, "@id", DbType.Int32, tourLog.Id);
             Debug.WriteLine("TourLog deleted");
             _database.ExecuteScalar(deleteCommand);
+        }
+
+        public TourLog EditTourLog(TourLog currentTourLog, string name, string description, string report,
+            string vehicle, string dateTime, int tourId, decimal distance, decimal totalTime, int rating)
+        {
+            DbCommand editCommand = _database.CreateCommand(SQL_EDIT_TOURLOG);
+            _database.DefineParameter(editCommand, "@name", DbType.String, name);
+            _database.DefineParameter(editCommand, "@description", DbType.String, description);
+            _database.DefineParameter(editCommand, "@report", DbType.String, report); 
+            _database.DefineParameter(editCommand, "@vehicle", DbType.String, vehicle);
+            _database.DefineParameter(editCommand, "@datetime", DbType.String, dateTime);
+            _database.DefineParameter(editCommand, "@tourid", DbType.Int32, tourId);
+            _database.DefineParameter(editCommand, "@distance", DbType.Decimal, distance);
+            _database.DefineParameter(editCommand, "@totaltime", DbType.Decimal, totalTime);
+            _database.DefineParameter(editCommand, "@rating", DbType.Int32, rating);
+            _database.DefineParameter(editCommand, "@id", DbType.Int32, currentTourLog.Id);
+
+            Debug.WriteLine("TourLog updated");
+
+            return FindById(_database.ExecuteScalar(editCommand));
         }
 
         private IEnumerable<TourLog> QueryTourLogsFromDb(DbCommand command)

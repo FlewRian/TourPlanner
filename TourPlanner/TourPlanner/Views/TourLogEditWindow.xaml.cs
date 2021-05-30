@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using TourPlanner.Model;
+using TourPlanner.ViewModels;
 
 namespace TourPlanner.Views
 {
@@ -19,9 +9,10 @@ namespace TourPlanner.Views
     /// </summary>
     public partial class TourLogEditWindow : Window
     {
-        public TourLogEditWindow()
+        public TourLogEditWindow(MainViewModel mainViewModel, TourLog currentTourLog)
         {
             InitializeComponent();
+            this.DataContext = new TourLogEditViewModel(currentTourLog, this, mainViewModel);
         }
     }
 }

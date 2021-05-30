@@ -10,27 +10,39 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
-            <Label Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" 
+            <Label Content="Name" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+            <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                      Text="{Binding  Name, Mode=TwoWay}"/>
-            <Label Content="Tour description" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        </Grid>
+        <Grid Grid.Row="1" >
+            <Label Content="Tour description" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+            <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                      Text="{Binding Description, Mode=TwoWay}"/>
-            <Label Content="Start" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        </Grid>
+        <Grid Grid.Row="2">
+            <Label Content="Start" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+            <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                      Text="{Binding Start, Mode=TwoWay}"/>
-            <Label Content="End" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        </Grid>
+        <Grid Grid.Row="3" >
+            <Label Content="End" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+            <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                      Text="{Binding End, Mode=TwoWay}"/>
-            <Label Content="Distance(km)" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Margin="10,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        </Grid>
+        <Grid Grid.Row="4" >
+            <Label Content="Distance(km)" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+            <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                      Text="{Binding Distance, Mode=TwoWay}"/>
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

@@ -5,37 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner.Views"
         mc:Ignorable="d"
-        Title="TourLogAddWindow" Height="530" Width="200">
+        Title="TourLogAddWindow" Height="530" Width="250">
 
     <Grid>
         <Label Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        <TextBox Margin="10,36,10,0" VerticalAlignment="Top"
                  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="Log description" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        <TextBox Margin="10,85,10,0" VerticalAlignment="Top"
                  Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="Report" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        <TextBox Margin="10,134,10,0" VerticalAlignment="Top"
                  Text="{Binding Report, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="Vehicle" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        <TextBox Margin="10,183,10,0" VerticalAlignment="Top"
                  Text="{Binding Vehicle, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="Date" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        <TextBox Margin="10,232,10,0" VerticalAlignment="Top"
                  Text="{Binding DateTime, UpdateSourceTrigger=PropertyChanged}"/>
-        <Label Content="Distance in km" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        <Label Content="Distance (km)" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,281,10,0" VerticalAlignment="Top"
                  Text="{Binding Distance, UpdateSourceTrigger=PropertyChanged}"/>
-        <Label Content="Totaltime" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        <Label Content="Totaltime (h)" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,330,10,0" VerticalAlignment="Top"
                  Text="{Binding TotalTime, UpdateSourceTrigger=PropertyChanged}"/>
-        <Label Content="Rating 1-10" HorizontalAlignment="Left" Margin="10,353,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"
+        <Label Content="Rating (1-10)" HorizontalAlignment="Left" Margin="10,353,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="10,379,10,0" VerticalAlignment="Top"
                  Text="{Binding Rating, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="TourID" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,428,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"
+        <TextBox Margin="10,428,10,0" VerticalAlignment="Top" IsReadOnly="True"
                  Text="{Binding TourId}"/>
-        <Button Content="Save" Margin="10,459,0,0" Width="60" HorizontalAlignment="Left" FontSize="12" Height="20" VerticalAlignment="Top" Command="{Binding SaveTourLogCommand}"/>
-        <Button Content="Cancel" Margin="80,459,0,0" Height="20" VerticalAlignment="Top" FontSize="12" HorizontalAlignment="Left" Width="60" Command="{Binding CancelTourLogAddCommand}"/>
+        <Button Content="Save" Margin="10,459,0,0" Width="100" Height="20" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                Command="{Binding SaveTourLogCommand}"/>
+        <Button Content="Cancel" Margin="130,459,0,0" Width="100" Height="20" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Left"  
+                Command="{Binding CancelTourLogAddCommand}"/>
     </Grid>
 </Window>

@@ -16,5 +16,10 @@ namespace TourPlanner.Factory.Window
         {
             throw new System.NotImplementedException();
         }
+
+        public System.Windows.Window GetWindow(MainViewModel mainViewModel, TourLog currentTourLog)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

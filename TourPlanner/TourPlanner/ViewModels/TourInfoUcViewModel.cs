@@ -85,10 +85,14 @@ namespace TourPlanner.ViewModels
 
         private void EditTourLog(object obj)
         {
-            Debug.WriteLine("EditTourLog klicked");
-            //Window view = _windowFactoryAddTour.GetWindow();
-            TourLogEditWindow view = new TourLogEditWindow();
-            view.Show();
+            if (_currentTourLog != null)
+            {
+                Debug.WriteLine("EditTourLog klicked");
+                Window view = _windowFactoryEditTourLog.GetWindow(_mainViewModel, _currentTourLog);
+                //TourLogEditWindow view = new TourLogEditWindow();
+                view.Show();
+            }
+            else Debug.WriteLine("No TourLog selected");
         }
 
         private void DeleteTourLog(object obj)
