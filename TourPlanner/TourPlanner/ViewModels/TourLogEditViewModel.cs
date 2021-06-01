@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
+using TourPlanner.Logger;
 using TourPlanner.Model;
 
 namespace TourPlanner.ViewModels
 {
     class TourLogEditViewModel : ViewModelBase
     {
+        private static readonly log4net.ILog _log = LogHelper.GetLogger();
+
         private string _name;
         private string _description;
         private string _report;
@@ -158,20 +156,34 @@ namespace TourPlanner.ViewModels
 
         private void UpdateTourLog(object obj)
         {
-            Debug.WriteLine("Update TourLog klicked");
-            TourLog tourLog = _tourPlannerFactory.EditTourLog(this._currentTourLog, this.Name, this.Description, this.Report, this.Vehicle, this.DateTime, this.TourId, this.Distance, this.TotalTime, this.Rating);
-            if (tourLog != null)
+            _log.Debug("Update TourLog klicked");
+            if (this.Name != null && this.Description != null && this.Report != null && this.Vehicle != null &&
+                this.DateTime != null)
             {
-                _mainViewModel.tourInfoUcViewModel.TourLogs.Remove(_currentTourLog);
-                _mainViewModel.tourInfoUcViewModel.TourLogs.Add(tourLog);
+                TourLog tourLog = _tourPlannerFactory.EditTourLog(this._currentTourLog, this.Name, this.Description,
+                    this.Report, this.Vehicle, this.DateTime, this.TourId, this.Distance, this.TotalTime, this.Rating);
+                if (tourLog != null)
+                {
+                    _mainViewModel.tourInfoUcViewModel.TourLogs.Remove(_currentTourLog);
+                    _mainViewModel.tourInfoUcViewModel.TourLogs.Add(tourLog);
+                    _log.Info("TourLog could be updated");
+                }
+            }
+            else
+            {
+                _log.Warn("TourLog could not be updated");
+                MessageBox.Show("TourLog couldn´t be updated!", "TourLog Edit Error", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
             _window.Close();
+            MessageBox.Show("TourLog successfully updated!", "TourLog Edit", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void CancelTourLogEdit(object obj)
         {
-            Debug.WriteLine("Cancel klicked");
+            _log.Debug("Cancel Edit TourLog klicked");
             _window.Close();
+            MessageBox.Show("TourLog Edit was canceled!", "Tour Add", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
+using TourPlanner.Logger;
 using TourPlanner.Model;
 using TourPlanner.Views;
 
@@ -8,6 +10,8 @@ namespace TourPlanner.ViewModels
 {
     class TourEditViewModel : ViewModelBase
     {
+        private static readonly log4net.ILog _log = LogHelper.GetLogger();
+
         private TourEditWindow _tourEditWindow;
         private MainViewModel _mainViewModel;
         private Tour _currentTour;
@@ -102,21 +106,32 @@ namespace TourPlanner.ViewModels
 
         private void EditTour(object commandParameter)
         {
-
-            Debug.WriteLine("Update Tour klicked");
-            Tour tour = _tourPlannerFactory.EditTour(_currentTour, Name, Description, Start, End, Distance);
-            if (tour != null)
+            _log.Debug("Update Tour klicked");
+            if (this.Name != null && this.Description != null && this.Start != null && this.End != null)
             {
-                _mainViewModel.searchUcViewModel.Items.Remove(_currentTour);
-                _mainViewModel.searchUcViewModel.Items.Add(tour);
+                Tour tour = _tourPlannerFactory.EditTour(_currentTour, Name, Description, Start, End, Distance);
+                if (tour != null)
+                {
+                    _mainViewModel.searchUcViewModel.Items.Remove(_currentTour);
+                    _mainViewModel.searchUcViewModel.Items.Add(tour);
+                    _log.Info("Tour could be updated");
+                }
+            }
+            else
+            {
+                _log.Warn("Tour could not be updated");
+                MessageBox.Show("Tour couldn´t be updated!", "Tour Edit Error", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
             _tourEditWindow.Close();
+            MessageBox.Show("Tour successfully updated!", "Tour Edit", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void CancelEditTour(object obj)
         {
-            Debug.WriteLine("Cancel klicked");
+            _log.Debug("Cancel Edit Tour klicked");
             _tourEditWindow.Close();
+            MessageBox.Show("Tour Edit was canceled!", "Tour Add", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

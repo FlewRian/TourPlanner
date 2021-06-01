@@ -15,18 +15,23 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
-        <Grid Grid.Row="1"  >
-            <uc:TourListUserControl/>
-        </Grid>
 
         <Grid Grid.Row="0" >
             <uc:SearchUserControl/>
         </Grid>
 
-        <Grid Grid.Row="2" >
+        <Grid Grid.Row="1" >
+            <uc:TourListUserControl/>
+        </Grid>
+
+        <!--<Grid Grid.Row="2">
+            <uc:SearchUserControl />
+        </Grid> -->
+
+        <Grid Grid.Row="3" >
             <uc:TourInfoUserControl/>
         </Grid>
 

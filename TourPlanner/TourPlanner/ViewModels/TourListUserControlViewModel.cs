@@ -1,16 +1,17 @@
-﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
 using TourPlanner.Factory.Window;
+using TourPlanner.Logger;
 using TourPlanner.Model;
-using TourPlanner.Views;
 
 namespace TourPlanner.ViewModels
 {
     public class TourListUserControlViewModel : ViewModelBase
     {
+        private static readonly log4net.ILog _log = LogHelper.GetLogger();
+
         private Tour _currentItem;
         private MainViewModel _mainViewModel;
         private ITourPlannerFactory _tourPlannerFactory;
@@ -32,7 +33,7 @@ namespace TourPlanner.ViewModels
                 if ((_currentItem != value) && (value != null))
                 {
                     _currentItem = value;
-                    Debug.WriteLine("CurrentItem was changed");
+                    _log.Debug("CurrentItem was changed");
                     RaisePropertyChangedEvent(nameof(CurrentItem));
 
                     _mainViewModel.tourInfoUcViewModel.FillTourLogListBox(_currentItem);
@@ -53,37 +54,41 @@ namespace TourPlanner.ViewModels
 
         public void AddTour(object obj)
         {
-            Debug.WriteLine("AddTour klicked");
+            _log.Debug("AddTour klicked");
             Window view = _windowFactoryAddTour.GetWindow(_mainViewModel);
-            //TourAddWindow view = new TourAddWindow(_mainViewModel);
             view.Show();
         }
 
         public void EditTour(object obj)
         {
-            Debug.WriteLine("EditTour klicked");
+            _log.Debug("EditTour klicked");
             if (CurrentItem != null)
             {
                 Window view = _windowFactoryEditTour.GetWindow(_mainViewModel, CurrentItem);
-                //TourEditWindow view = new TourEditWindow(_mainViewModel, CurrentItem);
                 view.Show();
             }
-            else Debug.WriteLine("No Tour selected");
+            else 
+            {
+                _log.Warn("No Tour selected");
+                MessageBox.Show("No Tour selected!", "Tour Edit", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void DeleteTour(object obj)
         {
-            Debug.WriteLine("DeleteTour klicked");
+            _log.Debug("DeleteTour klicked");
             if (CurrentItem != null)
             {
                 _tourPlannerFactory.DeleteTour(CurrentItem);
-                CurrentItem = null;
                 _mainViewModel.searchUcViewModel.Items.Remove(CurrentItem);
-                //Logs.Clear();
-                //FillTourListBox();
+                CurrentItem = null;
+                _mainViewModel.tourInfoUcViewModel.TourLogs.Clear();
             }
-            else Debug.WriteLine("no Tour selected");
-
+            else 
+            {
+                _log.Warn("No Tour selected");
+                MessageBox.Show("No Tour selected!", "Tour Delete", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

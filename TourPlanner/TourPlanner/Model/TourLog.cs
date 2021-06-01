@@ -28,8 +28,12 @@ namespace TourPlanner.Model
             this.TourId = tourId;
             this.Distance = distance;
             this.TotalTime = totalTime;
-            this.Speed = Math.Round(distance / totalTime, 2);
             this.Rating = rating;
+            if (totalTime == 0)
+            {
+                totalTime = 0.001m;
+            }
+            this.Speed = Math.Round(distance / totalTime, 2);
         }
     }
 }

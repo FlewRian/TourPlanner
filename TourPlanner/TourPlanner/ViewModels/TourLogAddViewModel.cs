@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
+using TourPlanner.Logger;
 using TourPlanner.Model;
-using TourPlanner.ViewModels;
 
 namespace TourPlanner.ViewModels
 {
     class TourLogAddViewModel : ViewModelBase
     {
+        private static readonly log4net.ILog _log = LogHelper.GetLogger();
+
         private string _name;
         private string _description;
         private string _report;
@@ -131,7 +128,7 @@ namespace TourPlanner.ViewModels
             {
                 if (value == 0)
                 {
-                    value = 0.001m;
+                    value = 0.1m;
                 }
                 _totaltime = value;
                 RaisePropertyChangedEvent(nameof(TotalTime));
@@ -151,16 +148,31 @@ namespace TourPlanner.ViewModels
 
         private void SaveTourLog(object obj)
         {
-            Debug.WriteLine("Save TourLog klicked");
-            _newTourLog = _tourPlannerFactory.AddNewTourLog(this.Name, this.Description, this.Report, this.Vehicle, this.DateTime, this.TourId, this.Distance, this.TotalTime, this.Rating);
-            _mainViewModel.tourInfoUcViewModel.TourLogs.Add(_newTourLog);
+            _log.Debug("Save TourLog klicked");
+            if (this.Name != null && this.Description != null && this.Report != null && this.Vehicle != null &&
+                this.DateTime != null)
+            {
+                _newTourLog = _tourPlannerFactory.AddNewTourLog(this.Name, this.Description, this.Report, this.Vehicle,
+                    this.DateTime, this.TourId, this.Distance, this.TotalTime, this.Rating);
+                _mainViewModel.tourInfoUcViewModel.TourLogs.Add(_newTourLog);
+                _log.Info("TourLog could be saved");
+            }
+            else 
+            {
+                _log.Warn("TourLog could not be saved");
+                MessageBox.Show("TourLog couldn´t be added!", "TourLog Add Error", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+
             _window.Close();
+            MessageBox.Show("TourLog successfully added!", "TourLog Add", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void CancelTourLogAdd(object obj)
         {
-            Debug.WriteLine("Cancel klicked");
+            _log.Debug("Cancel Add TourLog klicked");
             _window.Close();
+            MessageBox.Show("TourLog add was canceled!", "TourLog Add", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

@@ -89,7 +89,7 @@
                     </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Image Grid.Column="1" Grid.Row="1" Source="/Images/No_Image_Icon.png" AutomationProperties.HelpText="Map Image"/>
+            <Image Grid.Column="1" Grid.Row="1" Source="C:\Users\Flori\source\repos\SWE2_Repos\TourPlanner\TourPlanner\TourPlanner\Images\No_Image_Icon.png" AutomationProperties.HelpText="Map Image"/>
         </Grid>
 
         <Grid Grid.Row="1" >

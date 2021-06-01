@@ -5,17 +5,14 @@ using System.Diagnostics;
 using System.Linq;
 using TourPlanner.DataAccessLayer.Common;
 using TourPlanner.DataAccessLayer.DAO;
+using TourPlanner.Logger;
 using TourPlanner.Model;
 
 namespace TourPlanner.BusinessLayer.PostgresSqlServer
 {
     public class TourPostgresDAO : ITourDAO
     {
-        /*private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"Tours\" WHERE \"Id\"=@Id;";
-        private const string SQL_GET_ALL_TOURS = "SELECT * FROM public.\"Tours\";";
-        private const string SQL_INSERT_NEW_TOUR = "INSERT INTO public.\"Tours\" (\"Name\", \"Description\", \"Start\", \"End\") " +
-                                                   "VALUES (@Name, @Description, @Start, @End) " +
-                                                   "RETURNING \"Id\";";*/
+        private static readonly log4net.ILog _log = LogHelper.GetLogger();
 
         private const string SQL_FIND_BY_ID = "SELECT * FROM \"tours\" WHERE \"id\"=@id;";
         private const string SQL_GET_ALL_TOURS = "SELECT * FROM \"tours\";";
@@ -95,7 +92,7 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
         {
             DbCommand deleteCommand = _database.CreateCommand(SQL_DELETE_TOUR);
             _database.DefineParameter(deleteCommand, "@id", DbType.Int32, tour.Id);
-            Debug.WriteLine("Tour deleted");
+            _log.Info("Delete Tour");
             _database.ExecuteScalar(deleteCommand);
         }
 
@@ -108,6 +105,8 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
             _database.DefineParameter(editCommand, "@description", DbType.String, newDescription);
             _database.DefineParameter(editCommand, "@distance", DbType.Int32, newDistance);
             _database.DefineParameter(editCommand, "@id", DbType.Int32, currentTour.Id);
+
+            _log.Info("Tour Update");
 
             return FindById(_database.ExecuteScalar(editCommand));
         }

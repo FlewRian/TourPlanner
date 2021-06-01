@@ -4,13 +4,15 @@ using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
 using TourPlanner.Factory.Window;
+using TourPlanner.Logger;
 using TourPlanner.Model;
-using TourPlanner.Views;
 
 namespace TourPlanner.ViewModels
 {
     public class TourInfoUcViewModel : ViewModelBase
     {
+        private static readonly log4net.ILog _log = LogHelper.GetLogger();
+
         private MainViewModel _mainViewModel;
         private ITourPlannerFactory _tourPlannerFactory;
         private TourLog _currentTourLog;
@@ -33,7 +35,7 @@ namespace TourPlanner.ViewModels
                 if ((_currentTourLog != value) && (value != null))
                 {
                     _currentTourLog= value;
-                    Debug.WriteLine("CurrentItem was changed");
+                    _log.Debug("CurrentItem was changed");
                     RaisePropertyChangedEvent(nameof(CurrentTourLog));
                 }   
             }
@@ -49,12 +51,12 @@ namespace TourPlanner.ViewModels
         private void InitListbox()
         {
             TourLogs = new ObservableCollection<TourLog>();
-            Debug.WriteLine("TourLogliste erstellt");
+            _log.Debug("TourLog Listbox was initialized");
         }
 
         public void FillTourLogListBox(Tour tour)
         {
-            Debug.WriteLine("TourLog Collection wird befüllt.");
+            _log.Debug("TourLog Collection gets filled");
             if (tour != null)
             {
                 TourLogs.Clear();
@@ -64,22 +66,24 @@ namespace TourPlanner.ViewModels
                 }
             }
             else
-                Debug.WriteLine("es wurde keine Tour ausgewählt");
-
+            {
+                _log.Warn("No Tour selected");
+                MessageBox.Show("No Tour selected!", "TourLog List Fill", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void AddTourLog(object obj)
         {
             if (_mainViewModel.tourListUcViewModel.CurrentItem != null)
             {
-                Debug.WriteLine("AddTourLog klicked");
-                //TourLogAddWindow view = new TourLogAddWindow(_mainViewModel.tourListUcViewModel.CurrentItem, _mainViewModel);
+                _log.Debug("AddTourLog klicked");
                 Window view = _windowFactoryAddTourLog.GetWindow(_mainViewModel, _mainViewModel.tourListUcViewModel.CurrentItem);
                 view.Show();
             }
             else
             {
-                Debug.WriteLine("No Tour selected");
+                _log.Warn("No Tour selected");
+                MessageBox.Show("No Tour selected!", "TourLog Add", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -87,26 +91,31 @@ namespace TourPlanner.ViewModels
         {
             if (_currentTourLog != null)
             {
-                Debug.WriteLine("EditTourLog klicked");
+                _log.Debug("EditTourLog klicked");
                 Window view = _windowFactoryEditTourLog.GetWindow(_mainViewModel, _currentTourLog);
-                //TourLogEditWindow view = new TourLogEditWindow();
                 view.Show();
             }
-            else Debug.WriteLine("No TourLog selected");
+            else
+            {
+                _log.Warn("No TourLog selected");
+                MessageBox.Show("No TourLog selected!", "TourLog Edit", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void DeleteTourLog(object obj)
         {
-            Debug.WriteLine("DeleteTourLog klicked");
+            _log.Debug("DeleteTourLog klicked");
             if (CurrentTourLog != null)
             {
                 _tourPlannerFactory.DeleteTourLog(CurrentTourLog);
-                CurrentTourLog = null;
                 TourLogs.Remove(CurrentTourLog);
-                //Logs.Clear();
-                //FillTourListBox();
+                CurrentTourLog = null;
             }
-            else Debug.WriteLine("no TourLog selected");
+            else
+            {
+                _log.Warn("No TourLog selected");
+                MessageBox.Show("No TourLog selected!", "TourLog Delete", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

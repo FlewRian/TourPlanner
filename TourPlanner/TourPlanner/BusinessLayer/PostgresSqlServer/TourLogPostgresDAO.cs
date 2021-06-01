@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics;
 using System.Linq;
 using TourPlanner.DataAccessLayer.Common;
 using TourPlanner.DataAccessLayer.DAO;
+using TourPlanner.Logger;
 using TourPlanner.Model;
 
 namespace TourPlanner.BusinessLayer.PostgresSqlServer
 {
     public class TourLogPostgresDAO : ITourLogDAO
     {
-        /*private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"TourLogs\" WHERE \"Id\"=@Id;";
-        private const string SQL_FIND_BY_TOURID = "SELECT * FROM public.\"TourLogs\" WHERE \"TourId\"=@TourId;";
-        private const string SQL_INSERT_NEW_TOURLOG =
-            "INSERT INTO public.\"TourLogs\" (\"Name\", \"Description\", \"Report\", \"Vehicle\", \"DateTime\", \"TourId\", \"Distance\", \"TotalTime\", \"Rating\") " +
-            "VALUES (@Name, @Description, @Report, @Vehicle, @DateTime, @TourId, @Distance, @TotalTime, @Rating);";*/
+        private static readonly log4net.ILog _log = LogHelper.GetLogger();
 
         private const string SQL_FIND_BY_ID = "SELECT * FROM \"tourlogs\" WHERE \"id\"=@id;";
+
         private const string SQL_FIND_BY_TOURID = "SELECT * FROM \"tourlogs\" WHERE \"tourid\"=@tourid;";
+
         private const string SQL_INSERT_NEW_TOURLOG =
             "INSERT INTO \"tourlogs\" (\"name\", \"description\", \"report\", \"vehicle\", \"datetime\", \"tourid\", \"distance\", \"totaltime\", \"rating\") " +
             "VALUES (@name, @description, @report, @vehicle, @datetime, @tourid, @distance, @totaltime, @rating) " +
             "RETURNING \"id\";";
+
         private const string SQL_DELETE_TOURLOG = "DELETE FROM \"tourlogs\" WHERE \"id\"=@id;";
+
         private const string SQL_EDIT_TOURLOG = "UPDATE \"tourlogs\" SET " +
                                              "\"name\"=@name, \"description\"=@description, \"report\"=@report, \"vehicle\"=@vehicle, " +
                                              "\"datetime\"=@datetime, \"tourid\"=@tourid, \"distance\"=@distance, \"totaltime\"=@totaltime, \"rating\"=@rating " +
@@ -85,7 +85,7 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
         {
             DbCommand deleteCommand = _database.CreateCommand(SQL_DELETE_TOURLOG);
             _database.DefineParameter(deleteCommand, "@id", DbType.Int32, tourLog.Id);
-            Debug.WriteLine("TourLog deleted");
+            _log.Info("TourLog deleted");
             _database.ExecuteScalar(deleteCommand);
         }
 
@@ -104,7 +104,7 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
             _database.DefineParameter(editCommand, "@rating", DbType.Int32, rating);
             _database.DefineParameter(editCommand, "@id", DbType.Int32, currentTourLog.Id);
 
-            Debug.WriteLine("TourLog updated");
+            _log.Info("TourLog updated");
 
             return FindById(_database.ExecuteScalar(editCommand));
         }

@@ -3,12 +3,15 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
+using TourPlanner.Logger;
 using TourPlanner.Model;
 
 namespace TourPlanner.ViewModels
 {
     public class SearchUcViewModel : ViewModelBase
     {
+        private static readonly log4net.ILog _log = LogHelper.GetLogger();
+
         public string searchName;
         public ITourPlannerFactory tourPlannerFactory;
 
@@ -49,22 +52,22 @@ namespace TourPlanner.ViewModels
         private void InitListbox()
         {
             Items = new ObservableCollection<Tour>();
-            Debug.WriteLine("Tourliste erstellt");
+            _log.Debug("Tour Listbox was initialized");
             FillListBox();
         }
 
         public void FillListBox()
         {
+            _log.Debug("Tour Collection gets filled");
             foreach (Tour item in this.tourPlannerFactory.GetItems())
             {
                 Items.Add(item);
-                Debug.WriteLine("Tour hinzugefügt");
             }
         }
 
         private void Search(object commandParameter)
         {
-            Debug.WriteLine("Search klicked");
+            _log.Debug("Search klicked");
             IEnumerable foundItems = tourPlannerFactory.Search(SearchName); 
             Items.Clear();
             foreach (Tour item in foundItems)
@@ -75,7 +78,7 @@ namespace TourPlanner.ViewModels
 
         private void Clear(object commandParameter)
         {
-            Debug.WriteLine("Reset klicked");
+            _log.Debug("Reset klicked");
             Items.Clear();
             SearchName = ""; 
             FillListBox();
