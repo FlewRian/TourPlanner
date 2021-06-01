@@ -37,6 +37,23 @@ namespace TourPlanner.BusinessLayer
             }
             return items.Where(x => x.Name.ToLower().Contains(itemName.ToLower()));
         }
+
+        public IEnumerable<TourLog> SearchTourLog(string itemName, Tour currentTour, bool caseSensitive = false)
+        {
+            IEnumerable<TourLog> items = GetTourLogs(currentTour);
+
+            if (caseSensitive)
+            {
+                return items.Where(x => x.Name.Contains(itemName));
+            }
+
+            if (itemName == null)
+            {
+                return items;
+            }
+            return items.Where(x => x.Name.ToLower().Contains(itemName.ToLower()));
+        }
+
         public Tour CreateTour(string name, string description, string start, string end, int distance)
         {
             ITourDAO tourDAO = DALFactory.CreateTourDAO();

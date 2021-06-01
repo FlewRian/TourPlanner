@@ -12,25 +12,25 @@ namespace TourPlanner.ViewModels
     {
         private static readonly log4net.ILog _log = LogHelper.GetLogger();
 
-        public string searchName;
-        public ITourPlannerFactory tourPlannerFactory;
+        private string _searchName;
+        private ITourPlannerFactory _tourPlannerFactory;
 
         private MainViewModel _mainViewModel;
 
-        private ICommand searchCommand;
-        private ICommand clearCommand;
-        public ICommand SearchCommand => searchCommand ??= new RelayCommand(Search);
-        public ICommand ClearCommand => clearCommand ??= new RelayCommand(Clear);
+        private ICommand _searchCommand;
+        private ICommand _clearCommand;
+        public ICommand SearchCommand => _searchCommand ??= new RelayCommand(Search);
+        public ICommand ClearCommand => _clearCommand ??= new RelayCommand(Clear);
 
         public ObservableCollection<Tour> Items { get; set; }
         public string SearchName
         {
-            get { return searchName; }
+            get { return _searchName; }
             set
             {
-                if (searchName != value)
+                if (_searchName != value)
                 {
-                    searchName = value;
+                    _searchName = value;
                     RaisePropertyChangedEvent(nameof(SearchName));
                 }
             }
@@ -38,13 +38,13 @@ namespace TourPlanner.ViewModels
 
         public SearchUcViewModel()
         {
-            this.tourPlannerFactory = TourPlannerFactory.GetInstance();
+            this._tourPlannerFactory = TourPlannerFactory.GetInstance();
             InitListbox();
         }
 
         public SearchUcViewModel(MainViewModel mainViewModel)
         {
-            this.tourPlannerFactory = TourPlannerFactory.GetInstance();
+            this._tourPlannerFactory = TourPlannerFactory.GetInstance();
             InitListbox();
             this._mainViewModel = mainViewModel;
         }
@@ -59,7 +59,7 @@ namespace TourPlanner.ViewModels
         public void FillListBox()
         {
             _log.Debug("Tour Collection gets filled");
-            foreach (Tour item in this.tourPlannerFactory.GetItems())
+            foreach (Tour item in this._tourPlannerFactory.GetItems())
             {
                 Items.Add(item);
             }
@@ -68,7 +68,7 @@ namespace TourPlanner.ViewModels
         private void Search(object commandParameter)
         {
             _log.Debug("Search klicked");
-            IEnumerable foundItems = tourPlannerFactory.Search(SearchName); 
+            IEnumerable foundItems = _tourPlannerFactory.Search(SearchName); 
             Items.Clear();
             foreach (Tour item in foundItems)
             {

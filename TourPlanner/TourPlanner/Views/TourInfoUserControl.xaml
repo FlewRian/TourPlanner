@@ -16,16 +16,31 @@
 
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="TourLog" Margin="5 0 5 10" VerticalAlignment="Top" HorizontalAlignment="Left" Width="134"/>
-                <Button Content="Add Log"    Grid.Column="1" Margin="5 0 5 10" VerticalAlignment="Bottom" Command="{Binding tourInfoUcViewModel.AddTourLogCommand}"/>
-                <Button Content="Edit Log"   Grid.Column="2" Margin="5 0 5 10" VerticalAlignment="Bottom" Command="{Binding tourInfoUcViewModel.EditTourLogCommand}"/>
-                <Button Content="Delete Log" Grid.Column="3" Margin="5 0 5 10" VerticalAlignment="Bottom" Command="{Binding tourInfoUcViewModel.DeleteTourLogCommand}"/>
+                <Button Content="Add Log"    Grid.Column="2" Margin="5 0 5 10" VerticalAlignment="Bottom" Command="{Binding tourInfoUcViewModel.AddTourLogCommand}"/>
+                <Button Content="Edit Log"   Grid.Column="3" Margin="5 0 5 10" VerticalAlignment="Bottom" Command="{Binding tourInfoUcViewModel.EditTourLogCommand}"/>
+                <Button Content="Delete Log" Grid.Column="4" Margin="5 0 5 10" VerticalAlignment="Bottom" Command="{Binding tourInfoUcViewModel.DeleteTourLogCommand}"/>
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"  Content="Reset" Margin="5 10" Padding="5 1" VerticalAlignment="Bottom"
+                            Command="{Binding tourInfoUcViewModel.ClearCommand}"/>
+                    <Button Grid.Column="1"  Content="Search" Margin="5 10" Padding="5 1" VerticalAlignment="Bottom"
+                            Command="{Binding tourInfoUcViewModel.SearchCommand}"/>
+                    <TextBox Grid.Column="2" Margin="5 10" Name="txtSearchName" VerticalAlignment="Bottom"
+                             Text="{Binding tourInfoUcViewModel.SearchName, Mode=TwoWay}"/>
+                </Grid>
             </Grid>
 
 

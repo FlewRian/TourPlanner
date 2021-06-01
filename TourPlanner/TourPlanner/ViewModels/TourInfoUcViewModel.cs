@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
@@ -13,16 +14,34 @@ namespace TourPlanner.ViewModels
     {
         private static readonly log4net.ILog _log = LogHelper.GetLogger();
 
+        private string _searchName;
+
         private MainViewModel _mainViewModel;
         private ITourPlannerFactory _tourPlannerFactory;
         private TourLog _currentTourLog;
         public ICommand AddTourLogCommand => new RelayCommand(AddTourLog);
         public ICommand EditTourLogCommand => new RelayCommand(EditTourLog);
         public ICommand DeleteTourLogCommand => new RelayCommand(DeleteTourLog);
+        public ICommand SearchCommand => new RelayCommand(Search);
+        public ICommand ClearCommand => new RelayCommand(Clear);
         public ObservableCollection<TourLog> TourLogs { get; set; }
 
         private readonly IWindowFactory _windowFactoryAddTourLog = new TourLogAddWindowFactory();
         private readonly IWindowFactory _windowFactoryEditTourLog = new TourLogEditWindowFactory();
+
+        
+        public string SearchName
+        {
+            get { return _searchName; }
+            set
+            {
+                if (_searchName != value)
+                {
+                    _searchName = value;
+                    RaisePropertyChangedEvent(nameof(SearchName));
+                }
+            }
+        }
 
         public TourLog CurrentTourLog
         {
@@ -116,6 +135,25 @@ namespace TourPlanner.ViewModels
                 _log.Warn("No TourLog selected");
                 MessageBox.Show("No TourLog selected!", "TourLog Delete", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Search(object commandParameter)
+        {
+            _log.Debug("Search TourLog klicked");
+            IEnumerable foundItems = _tourPlannerFactory.SearchTourLog(SearchName, _mainViewModel.tourListUcViewModel.CurrentItem); 
+            TourLogs.Clear();
+            foreach (TourLog item in foundItems)
+            {
+                TourLogs.Add(item);
+            }
+        }
+
+        private void Clear(object commandParameter)
+        {
+            _log.Debug("Reset TourLog Search klicked");
+            TourLogs.Clear();
+            SearchName = ""; 
+            FillTourLogListBox(_mainViewModel.tourListUcViewModel.CurrentItem);
         }
     }
 }
