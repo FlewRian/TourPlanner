@@ -132,7 +132,7 @@ namespace TourPlanner.ViewModels
         {
             _log.Debug("Cancel Add Tour klicked");
             _window.Close();
-            MessageBox.Show("Tour add was canceled!", "Tour Add", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Tour add was canceled!", "Tour Add", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

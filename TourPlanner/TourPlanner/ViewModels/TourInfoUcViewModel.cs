@@ -98,6 +98,7 @@ namespace TourPlanner.ViewModels
                 _log.Debug("AddTourLog klicked");
                 Window view = _windowFactoryAddTourLog.GetWindow(_mainViewModel, _mainViewModel.tourListUcViewModel.CurrentItem);
                 view.Show();
+                CurrentTourLog = null;
             }
             else
             {
@@ -108,11 +109,12 @@ namespace TourPlanner.ViewModels
 
         private void EditTourLog(object obj)
         {
-            if (_currentTourLog != null)
+            if (CurrentTourLog != null)
             {
                 _log.Debug("EditTourLog klicked");
                 Window view = _windowFactoryEditTourLog.GetWindow(_mainViewModel, _currentTourLog);
                 view.Show();
+                CurrentTourLog = null;
             }
             else
             {

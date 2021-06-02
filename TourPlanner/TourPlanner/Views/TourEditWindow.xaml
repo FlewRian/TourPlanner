@@ -17,27 +17,27 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
-            <Label Content="Name" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+            <Label Content="Name*" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                      Text="{Binding  Name, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="1" >
-            <Label Content="Tour description" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+            <Label Content="Tour description*" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                      Text="{Binding Description, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="2">
-            <Label Content="Start" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+            <Label Content="Start*" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                      Text="{Binding Start, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="3" >
-            <Label Content="End" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+            <Label Content="End*" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                      Text="{Binding End, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="4" >
-            <Label Content="Distance(km)" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+            <Label Content="Distance(km)*" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                      Text="{Binding Distance, Mode=TwoWay}"/>
         </Grid>

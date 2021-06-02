@@ -57,6 +57,7 @@ namespace TourPlanner.ViewModels
             _log.Debug("AddTour klicked");
             Window view = _windowFactoryAddTour.GetWindow(_mainViewModel);
             view.Show();
+            CurrentItem = null;
         }
 
         public void EditTour(object obj)
@@ -79,10 +80,10 @@ namespace TourPlanner.ViewModels
             _log.Debug("DeleteTour klicked");
             if (CurrentItem != null)
             {
-                _tourPlannerFactory.DeleteTour(CurrentItem);
+                _tourPlannerFactory.DeleteTour(CurrentItem, CurrentItem.ImagePath);
                 _mainViewModel.searchUcViewModel.Items.Remove(CurrentItem);
-                CurrentItem = null;
                 _mainViewModel.tourInfoUcViewModel.TourLogs.Clear();
+                CurrentItem = null;
             }
             else 
             {

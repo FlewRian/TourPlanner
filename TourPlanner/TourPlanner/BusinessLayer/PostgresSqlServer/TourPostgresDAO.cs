@@ -16,13 +16,13 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
 
         private const string SQL_FIND_BY_ID = "SELECT * FROM \"tours\" WHERE \"id\"=@id;";
         private const string SQL_GET_ALL_TOURS = "SELECT * FROM \"tours\";";
-        private const string SQL_INSERT_NEW_TOUR = "INSERT INTO \"tours\" (\"name\", \"description\", \"start\", \"end\", \"distance\") " +
-                                                   "VALUES (@name, @description, @start, @end, @distance) " +
+        private const string SQL_INSERT_NEW_TOUR = "INSERT INTO \"tours\" (\"name\", \"description\", \"start\", \"end\", \"distance\", \"imagepath\") " +
+                                                   "VALUES (@name, @description, @start, @end, @distance, @imagepath) " +
                                                    "RETURNING \"id\";";
         private const string SQL_DELETE_TOUR = "DELETE FROM \"tours\" WHERE \"id\"=@id;";
         private const string SQL_EDIT_TOUR = "UPDATE \"tours\" SET " +
                                            "\"end\"=@end, \"name\"=@name, \"start\"=@start, " +
-                                           "\"description\"=@description, \"distance\"=@distance " +
+                                           "\"description\"=@description, \"distance\"=@distance, \"imagepath\"=@imagepath  " +
                                            "WHERE \"id\"=@id RETURNING \"id\";";
 
         
@@ -38,7 +38,7 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
             this._database = database;
         }
 
-        public Tour AddNewItem(string name, string description, string start, string end, int distance)
+        public Tour AddNewItem(string name, string description, string start, string end, int distance, string imagePath)
         {
             DbCommand insertCommand = _database.CreateCommand(SQL_INSERT_NEW_TOUR);
             _database.DefineParameter(insertCommand, "@name", DbType.String, name);
@@ -46,6 +46,7 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
             _database.DefineParameter(insertCommand, "@start", DbType.String, start);
             _database.DefineParameter(insertCommand, "@end", DbType.String, end);
             _database.DefineParameter(insertCommand, "@distance", DbType.Int32, distance);
+            _database.DefineParameter(insertCommand, "@imagepath", DbType.String, imagePath);
 
             return FindById(_database.ExecuteScalar(insertCommand));
         }
@@ -80,7 +81,8 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
                         (string)reader["description"],
                         (string)reader["start"],
                         (string)reader["end"],
-                        (int)reader["distance"]
+                        (int)reader["distance"],
+                        (string)reader["ImagePath"]
                     ));
                 }
             }
@@ -96,7 +98,7 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
             _database.ExecuteScalar(deleteCommand);
         }
 
-        public Tour EditTour(Tour currentTour, string newName, string newDescription, string newStart, string newEnd, int newDistance)
+        public Tour EditTour(Tour currentTour, string newName, string newDescription, string newStart, string newEnd, int newDistance, string tourImagePath)
         {
             DbCommand editCommand = _database.CreateCommand(SQL_EDIT_TOUR);
             _database.DefineParameter(editCommand, "@name", DbType.String, newName);
@@ -104,6 +106,7 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
             _database.DefineParameter(editCommand, "@end", DbType.String, newEnd);
             _database.DefineParameter(editCommand, "@description", DbType.String, newDescription);
             _database.DefineParameter(editCommand, "@distance", DbType.Int32, newDistance);
+            _database.DefineParameter(editCommand, "@imagepath", DbType.String, tourImagePath);
             _database.DefineParameter(editCommand, "@id", DbType.Int32, currentTour.Id);
 
             _log.Info("Tour Update");

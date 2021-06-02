@@ -183,7 +183,7 @@ namespace TourPlanner.ViewModels
         {
             _log.Debug("Cancel Edit TourLog klicked");
             _window.Close();
-            MessageBox.Show("TourLog Edit was canceled!", "Tour Add", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("TourLog Edit was canceled!", "Tour Add", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

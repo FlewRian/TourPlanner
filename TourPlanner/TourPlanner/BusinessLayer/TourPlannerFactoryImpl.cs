@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
-using TourPlanner.DataAccessLayer;
 using TourPlanner.DataAccessLayer.Common;
 using TourPlanner.DataAccessLayer.DAO;
 using TourPlanner.Model;
@@ -57,7 +57,9 @@ namespace TourPlanner.BusinessLayer
         public Tour CreateTour(string name, string description, string start, string end, int distance)
         {
             ITourDAO tourDAO = DALFactory.CreateTourDAO();
-            return tourDAO.AddNewItem(name, description, start, end, distance);
+            IMapQuest mapQuest = new MapQuest();
+            string imagePath = mapQuest.LoadImage(start, end);
+            return tourDAO.AddNewItem(name, description, start, end, distance, imagePath);
         }
 
         public TourLog CreateTourLog(string name, string description, string report, string vehicle, string dateTime,
@@ -68,9 +70,17 @@ namespace TourPlanner.BusinessLayer
                 rating);
         }
 
-        public void DeleteTour(Tour tour)
+        public void DeleteTour(Tour tour, string imagePath)
         {
             ITourDAO tourDao = DALFactory.CreateTourDAO();
+
+            if (!imagePath.Equals(""))
+            {
+                /*Image tempImage = Image.FromFile(imagePath);
+                tempImage.Dispose();
+                File.Delete(imagePath);*/
+            }
+
             tourDao.DeleteTour(tour);
         }
 
@@ -83,7 +93,9 @@ namespace TourPlanner.BusinessLayer
         public Tour AddNewItem(string name, string description, string start, string end, int distance)
         {
             ITourDAO tourDao = DALFactory.CreateTourDAO();
-            return tourDao.AddNewItem(name, description, start, end, distance);
+            IMapQuest mapQuest = new MapQuest();
+            string imagePath = mapQuest.LoadImage(start, end);
+            return tourDao.AddNewItem(name, description, start, end, distance, imagePath);
         }
 
         public TourLog AddNewTourLog(string name, string description, string report, string vehicle, string dateTime, int tourId,
@@ -96,7 +108,9 @@ namespace TourPlanner.BusinessLayer
         public Tour EditTour(Tour currentTour, string newName, string newDescription, string newStart, string newEnd, int newDistance)
         {
             ITourDAO tourDao = DALFactory.CreateTourDAO();
-            return tourDao.EditTour(currentTour, newName, newDescription, newStart, newEnd, newDistance);
+            IMapQuest mapQuest = new MapQuest();
+            string imagePath = mapQuest.LoadImage(newStart, newEnd);
+            return tourDao.EditTour(currentTour, newName, newDescription, newStart, newEnd, newDistance, imagePath);
         }
 
         public TourLog EditTourLog(TourLog currentTourLog, string name, string description, string report,

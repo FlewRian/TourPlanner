@@ -22,47 +22,47 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Name" />
+            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Name*" />
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                  Text="{Binding Name, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Log description"/>
+            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Log description*"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                  Text="{Binding Description, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="2">
-            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Report"/>
+            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Report*"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                  Text="{Binding Report, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="3">
-            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Vehicle"/>
+            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Vehicle*"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                  Text="{Binding Vehicle, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="4">
-            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Date"/>
+            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Date (dd.mm.yyyy)*"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                  Text="{Binding DateTime, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="5">
-            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Distance (km)"/>
+            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Distance (km)*"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                  Text="{Binding Distance, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="6">
-            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Totaltime (h)"/>
+            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Totaltime (h)*"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                  Text="{Binding TotalTime, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="7">
-            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Rating (1-10)"/>
+            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Rating (1-10)*"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                  Text="{Binding Rating, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="8">
-            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="TourID"/>
+            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="TourID*"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top" IsReadOnly="True"
                  Text="{Binding TourId}"/>
         </Grid>

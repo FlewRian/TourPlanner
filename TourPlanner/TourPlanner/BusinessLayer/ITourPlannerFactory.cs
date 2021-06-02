@@ -9,11 +9,11 @@ namespace TourPlanner.BusinessLayer
         IEnumerable<Tour> GetItems();
         IEnumerable<TourLog> GetTourLogs(Tour tour);
         IEnumerable<Tour> Search(string itemName, bool caseSensitive = false);
-        IEnumerable<TourLog> SearchTourLog(string itemName, Tour currentTourbool, bool caseSensitive = false);
+        IEnumerable<TourLog> SearchTourLog(string itemName, Tour currentTour, bool caseSensitive = false);
         Tour CreateTour(string name, string description, string start, string end, int distance);
         TourLog CreateTourLog(string name, string description, string report, string vehicle, string dateTime,
             int tourId, decimal distance, decimal totalTime, int rating);
-        void DeleteTour(Tour tour);
+        void DeleteTour(Tour tour, string imagePath);
         void DeleteTourLog(TourLog tourlog);
         Tour AddNewItem(string name, string description, string start, string end, int distance);
         TourLog AddNewTourLog(string name, string description, string report, string vehicle, string dateTime,
