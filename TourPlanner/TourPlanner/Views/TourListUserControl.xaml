@@ -98,10 +98,14 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Add Tour"    Margin="5 0 5 10" VerticalAlignment="Bottom" Command="{Binding tourListUcViewModel.AddTourCommand}" />
             <Button Grid.Column="1" Content="Update Tour" Margin="5,0,5,10" VerticalAlignment="Bottom" Command="{Binding tourListUcViewModel.EditTourCommand}"/>
             <Button Grid.Column="2" Content="Delete Tour" Margin="5,0,5,10" VerticalAlignment="Bottom" Command="{Binding tourListUcViewModel.DeleteTourCommand}"/>
+            <Button Grid.Column="3" Content="Generate Report" Margin="5,0,5,10" VerticalAlignment="Bottom" Command="{Binding tourListUcViewModel.GeneratePDFReportCommand}"/>
+            <Button Grid.Column="4" Content="Generate Summary" Margin="5,0,5,10" VerticalAlignment="Bottom" Command="{Binding tourListUcViewModel.GenerateSummaryCommand}"/>
         </Grid>
     </Grid>
 </UserControl>

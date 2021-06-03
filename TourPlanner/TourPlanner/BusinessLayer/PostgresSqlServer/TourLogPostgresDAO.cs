@@ -18,6 +18,8 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
 
         private const string SQL_FIND_BY_TOURID = "SELECT * FROM \"tourlogs\" WHERE \"tourid\"=@tourid;";
 
+        private const string SQL_GET_ALL_LOGS = "SELECT * FROM \"tourlogs\";";
+
         private const string SQL_INSERT_NEW_TOURLOG =
             "INSERT INTO \"tourlogs\" (\"name\", \"description\", \"report\", \"vehicle\", \"datetime\", \"tourid\", \"distance\", \"totaltime\", \"rating\") " +
             "VALUES (@name, @description, @report, @vehicle, @datetime, @tourid, @distance, @totaltime, @rating) " +
@@ -79,6 +81,12 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
         {
             int tourid = tour.Id;
             return GetLogsForTour(tourid);
+        }
+
+        public IEnumerable<TourLog> GetAllTourLogs()
+        {
+            DbCommand getAllLogsCommand = _database.CreateCommand(SQL_GET_ALL_LOGS);
+            return QueryTourLogsFromDb(getAllLogsCommand);
         }
 
         public void DeleteTourLog(TourLog tourLog)

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using TourPlanner.BusinessLayer.Report;
 using TourPlanner.DataAccessLayer.Common;
 using TourPlanner.DataAccessLayer.DAO;
 using TourPlanner.Model;
@@ -119,6 +120,19 @@ namespace TourPlanner.BusinessLayer
             ITourLogDAO tourLogDao = DALFactory.CreateTourLogDAO();
             return tourLogDao.EditTourLog(currentTourLog, name, description, report, vehicle, dateTime, tourId,
                 distance, totalTime, rating);
+        }
+
+        public bool GenerateReportPDF(Tour currentTour, IEnumerable<TourLog> tourLogs)
+        {
+            TourPlannerReport report = new TourPlannerReport();
+            return report.GenerateReportPDF(currentTour, tourLogs, false);
+        }
+
+        public bool GenerateSummary(Tour currentTour)
+        {
+            TourPlannerReport report = new TourPlannerReport();
+            ITourLogDAO tourLogDao = DALFactory.CreateTourLogDAO();
+            return report.GenerateReportPDF(currentTour, tourLogDao.GetAllTourLogs(), true);
         }
     }
 }

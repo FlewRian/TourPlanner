@@ -22,6 +22,8 @@ namespace TourPlanner.BusinessLayer
 
         TourLog EditTourLog(TourLog currentTourLog, string name, string description, string report,
             string vehicle, string dateTime, int tourId, decimal distance, decimal totalTime, int rating);
+        bool GenerateReportPDF(Tour currentTour, IEnumerable<TourLog> tourLogs);
+        bool GenerateSummary(Tour currentTour);
 
     }
 }
