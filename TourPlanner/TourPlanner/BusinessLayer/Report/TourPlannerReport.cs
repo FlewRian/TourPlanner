@@ -33,6 +33,7 @@ namespace TourPlanner.BusinessLayer.Report
             int tourLogCount = 0;
             decimal totalDistance = 0;
             decimal totalTime = 0;
+            bool printAllLogs = true;
 
             switch (logSummary)
             {
@@ -50,10 +51,26 @@ namespace TourPlanner.BusinessLayer.Report
                     }
 
                     htmlReportText = @"<h1>Total Tour Log Count: " + tourLogCount + "</h1>" +
-                                     "<b> Total Distance: " + totalDistance + "<br>" +
-                                     "<b> Total Time: " + totalTime + "<br>" +
-                                     "</body></html>";
+                                     "<b> Total Distance: " + totalDistance + " km<br>" +
+                                     "<b> Total Time: " + totalTime + " h<br>";
+                                     
 
+                    if (printAllLogs)
+                    {
+                        foreach (var log in tourLogs)
+                        {
+                            htmlReportText += @"<h3>Logname: " + log.DateTime + "</h3>" +
+                                              "<b> Description: </b> " + log.Description + "<br>" +
+                                              "<b> Report: </b> " + log.Report + "<br>" +
+                                              "<b> Vehicle: </b> " + log.Vehicle + "<br>" +
+                                              "<b> Date: </b> " + log.DateTime + "<br>" +
+                                              "<b> Distance: </b> " + log.Distance + " km<br>" +
+                                              "<b> Totaltime: </b> " + log.TotalTime + " h<br>" +
+                                              "<b> Rating: </b> " + log.Rating + "<br>" +
+                                              "<b> Tour ID: </b> " + log.TourId + "<br>";
+                        }
+                    }
+                    htmlReportText += "</body></html>";
 
                     return htmlReportText;
 
@@ -67,7 +84,7 @@ namespace TourPlanner.BusinessLayer.Report
                                       "<h1>Tourname: " + currentTour.Name + "</h1>" +
                                       "<b> Start: </b> " + currentTour.Start + "<br>" +
                                       "<b> End: </b> " + currentTour.End + "<br>" +
-                                      "<b> Distance: </b> " + currentTour.Distance + "<br>" +
+                                      "<b> Distance: </b> " + currentTour.Distance + " km<br>" +
                                       "<b> Description: </b> " + currentTour.Description + "<br>" +
                                       "<img src='" + currentTour.ImagePath + "' alt='TourImage' width='500'>" +
                                       "<h2>All TourLogs from Tour: " + currentTour.Name + "</h2>";
@@ -81,8 +98,8 @@ namespace TourPlanner.BusinessLayer.Report
                                               "<b> Report: </b> " + log.Report + "<br>" +
                                               "<b> Vehicle: </b> " + log.Vehicle + "<br>" +
                                               "<b> Date: </b> " + log.DateTime + "<br>" +
-                                              "<b> Distance: </b> " + log.Distance + "<br>" +
-                                              "<b> Totaltime: </b> " + log.TotalTime + "<br>" +
+                                              "<b> Distance: </b> " + log.Distance + " km<br>" +
+                                              "<b> Totaltime: </b> " + log.TotalTime + " h<br>" +
                                               "<b> Rating: </b> " + log.Rating + "<br>" +
                                               "</body></html>";
                         }

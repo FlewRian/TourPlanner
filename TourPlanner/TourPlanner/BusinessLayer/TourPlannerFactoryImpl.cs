@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Linq;
+using TourPlanner.BusinessLayer.Json;
 using TourPlanner.BusinessLayer.Report;
 using TourPlanner.DataAccessLayer.Common;
 using TourPlanner.DataAccessLayer.DAO;
@@ -11,6 +10,7 @@ namespace TourPlanner.BusinessLayer
 {
     internal class TourPlannerFactoryImpl : ITourPlannerFactory
     {
+
         public IEnumerable<Tour> GetItems()
         {
             ITourDAO tourDAO = DALFactory.CreateTourDAO();
@@ -58,7 +58,7 @@ namespace TourPlanner.BusinessLayer
         public Tour CreateTour(string name, string description, string start, string end, int distance)
         {
             ITourDAO tourDAO = DALFactory.CreateTourDAO();
-            IMapQuest mapQuest = new MapQuest();
+            IMapQuest mapQuest = new MapQuest.MapQuest();
             string imagePath = mapQuest.LoadImage(start, end);
             return tourDAO.AddNewItem(name, description, start, end, distance, imagePath);
         }
@@ -94,7 +94,7 @@ namespace TourPlanner.BusinessLayer
         public Tour AddNewItem(string name, string description, string start, string end, int distance)
         {
             ITourDAO tourDao = DALFactory.CreateTourDAO();
-            IMapQuest mapQuest = new MapQuest();
+            IMapQuest mapQuest = new MapQuest.MapQuest();
             string imagePath = mapQuest.LoadImage(start, end);
             return tourDao.AddNewItem(name, description, start, end, distance, imagePath);
         }
@@ -109,7 +109,7 @@ namespace TourPlanner.BusinessLayer
         public Tour EditTour(Tour currentTour, string newName, string newDescription, string newStart, string newEnd, int newDistance)
         {
             ITourDAO tourDao = DALFactory.CreateTourDAO();
-            IMapQuest mapQuest = new MapQuest();
+            IMapQuest mapQuest = new MapQuest.MapQuest();
             string imagePath = mapQuest.LoadImage(newStart, newEnd);
             return tourDao.EditTour(currentTour, newName, newDescription, newStart, newEnd, newDistance, imagePath);
         }
@@ -133,6 +133,42 @@ namespace TourPlanner.BusinessLayer
             TourPlannerReport report = new TourPlannerReport();
             ITourLogDAO tourLogDao = DALFactory.CreateTourLogDAO();
             return report.GenerateReportPDF(currentTour, tourLogDao.GetAllTourLogs(), true);
+        }
+
+        public bool JsonExport()
+        {
+            IJsonManager jsonManager = new JsonManager();
+            ITourLogDAO tourLogDao = DALFactory.CreateTourLogDAO();
+            ITourDAO tourDao = DALFactory.CreateTourDAO();
+
+            IEnumerable<Tour> tours = tourDao.GetTours();
+            IEnumerable<TourLog> tourLogs = tourLogDao.GetAllTourLogs();
+
+            return jsonManager.JsonExport(tours, tourLogs);
+        }
+
+        public bool JsonImport()
+        {
+            IJsonManager jsonManager = new JsonManager();
+            Tour_LogJson jsonData = jsonManager.JsonImport();
+
+            if (jsonData != null)
+            {
+                foreach (var tour in jsonData.Tours)
+                {
+                    Tour newTour = AddNewItem(tour.Name, tour.Description, tour.Start, tour.End, tour.Distance);
+                    foreach (var tourLog in jsonData.TourLogs)
+                    {
+                        if (tour.Id == tourLog.TourId)
+                        {
+                            AddNewTourLog(tourLog.Name, tourLog.Description, tourLog.Report, tourLog.Vehicle,
+                                tourLog.DateTime, newTour.Id, tourLog.Distance, tourLog.TotalTime, tourLog.Rating);
+                        }
+                    }
+                }
+                return true;
+            }
+            return false;
         }
     }
 }

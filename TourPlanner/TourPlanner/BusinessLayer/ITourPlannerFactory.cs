@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Documents;
 using TourPlanner.Model;
 
 namespace TourPlanner.BusinessLayer
@@ -24,6 +25,8 @@ namespace TourPlanner.BusinessLayer
             string vehicle, string dateTime, int tourId, decimal distance, decimal totalTime, int rating);
         bool GenerateReportPDF(Tour currentTour, IEnumerable<TourLog> tourLogs);
         bool GenerateSummary(Tour currentTour);
+        bool JsonExport();
+        bool JsonImport();
 
     }
 }

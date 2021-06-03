@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace TourPlanner.BusinessLayer {
+namespace TourPlanner.BusinessLayer.MapQuest {
     public class MapQuest : IMapQuest
     {
         private readonly string _baseUrl;
@@ -52,8 +52,7 @@ namespace TourPlanner.BusinessLayer {
 
         private string GetUniqueFilename()
         {
-            DateTime dt = DateTime.Now;
-            var checkName = dt.ToString("yyyyMMdd");
+            var checkName = "TourImage";
             var fileIndex = 1;
             
             string[] files = Directory.GetFiles(_filePath);

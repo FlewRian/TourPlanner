@@ -62,8 +62,6 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
         public IEnumerable<Tour> GetTours()
         {
             DbCommand toursCommand = _database.CreateCommand(SQL_GET_ALL_TOURS);
-            
-            
             return QueryTourFromDatabase(toursCommand);
         }
 

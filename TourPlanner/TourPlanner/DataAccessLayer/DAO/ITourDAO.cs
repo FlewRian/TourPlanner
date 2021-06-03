@@ -11,5 +11,6 @@ namespace TourPlanner.DataAccessLayer.DAO
         IEnumerable<Tour> GetTours();
         void DeleteTour(Tour tour);
         Tour EditTour(Tour currentTour, string newName, string newDescription, string newStart, string newEnd, int newDistance, string tourImagePath);
+        
     }
 }

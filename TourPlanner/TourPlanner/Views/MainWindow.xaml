@@ -27,10 +27,6 @@
             <uc:TourListUserControl/>
         </Grid>
 
-        <!--<Grid Grid.Row="2">
-            <uc:SearchUserControl />
-        </Grid> -->
-
         <Grid Grid.Row="3" >
             <uc:TourInfoUserControl/>
         </Grid>

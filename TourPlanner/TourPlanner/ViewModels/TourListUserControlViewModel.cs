@@ -21,8 +21,7 @@ namespace TourPlanner.ViewModels
         public ICommand AddTourCommand => new RelayCommand(AddTour);
         public ICommand EditTourCommand => new RelayCommand(EditTour);
         public ICommand DeleteTourCommand => new RelayCommand(DeleteTour);
-        public ICommand GeneratePDFReportCommand => new RelayCommand(GeneratePDFReport);
-        public ICommand GenerateSummaryCommand => new RelayCommand(GenerateSummary);
+        
 
         public Tour CurrentItem
         {
@@ -91,47 +90,6 @@ namespace TourPlanner.ViewModels
             {
                 _log.Warn("No Tour selected");
                 MessageBox.Show("No Tour selected!", "Tour Delete", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void GeneratePDFReport(object obj)
-        {
-            if (CurrentItem != null)
-            {
-                if (_tourPlannerFactory.GenerateReportPDF(CurrentItem, _mainViewModel.tourInfoUcViewModel.TourLogs))
-                {
-                    _log.Info("PDF Report was successfully generated");
-                    MessageBox.Show("PDF Report successfully generated.", "Report Generator", MessageBoxButton.OK,
-                        MessageBoxImage.Information);
-                }
-                else
-                {
-                    _log.Warn("PDF Report could not be generated");
-                    MessageBox.Show("An unexpected error occurred while creating the report!", "Report Generator",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            else
-            {
-                _log.Debug("No Tour was selected, could not generate a report");
-                MessageBox.Show("No Tour selected", "Report Generator",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void GenerateSummary(object obj)
-        {
-            if (_tourPlannerFactory.GenerateSummary(CurrentItem))
-            {
-                _log.Info("PDF Summary was successfully generated");
-                MessageBox.Show("PDF Summary successfully generated.", "Summary Generator", MessageBoxButton.OK,
-                    MessageBoxImage.Information);
-            }
-            else
-            {
-                _log.Warn("PDF Summary could not be generated");
-                MessageBox.Show("An unexpected error occurred while creating the summary!", "Summary Generator",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
