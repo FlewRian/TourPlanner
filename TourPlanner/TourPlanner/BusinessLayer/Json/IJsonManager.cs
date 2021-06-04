@@ -7,7 +7,7 @@ using TourPlanner.Model;
 
 namespace TourPlanner.BusinessLayer.Json
 {
-    interface IJsonManager
+    public interface IJsonManager
     {
         public bool JsonExport(IEnumerable<Tour> tours, IEnumerable<TourLog> tourLogs);
         public Tour_LogJson JsonImport();

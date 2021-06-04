@@ -1,0 +1,66 @@
+{
+  "Tours": [
+    {
+      "Id": 1,
+      "Name": "Testtour1",
+      "Description": "Description",
+      "Start": "tart",
+      "End": "End",
+      "Distance": 1234,
+      "ImagePath": "C:\\Users\\Flori\\source\\repos\\SWE2_Repos\\TourPlanner\\Test\\TourImage_1.jpg"
+    },
+    {
+      "Id": 2,
+      "Name": "Testtour2",
+      "Description": "Desc",
+      "Start": "S",
+      "End": "E",
+      "Distance": 69,
+      "ImagePath": "C:\\Users\\Flori\\source\\repos\\SWE2_Repos\\TourPlanner\\Test\\TourImage_1.jpg"
+    }
+  ],
+  "TourLogs": [
+    {
+      "Id": 1,
+      "Name": "TestTourLog1",
+      "Description": "Description",
+      "Report": "Report",
+      "Vehicle": "Vehicle",
+      "DateTime": "DateTime",
+      "TourId": 1,
+      "TourName": null,
+      "Distance": 1
+      "TotalTime": 1,
+      "Speed": 0.0,
+      "Rating": 1
+    },
+    {
+      "Id": 2,
+      "Name": "TestTourLog1",
+      "Description": "Desc",
+      "Report": "Rep",
+      "Vehicle": "Veh",
+      "DateTime": "Date",
+      "TourId": 1,
+      "TourName": null,
+      "Distance": 0.0,
+      "TotalTime": 6.0,
+      "Speed": 0.0,
+      "Rating": 5
+    },
+    {
+      "Id": 3,
+      "Name": "TestTourLog1",
+      "Description": "D",
+      "Report": "R",
+      "Vehicle": "V",
+      "DateTime": "DT",
+      "TourId": 2,
+      "TourName": null,
+      "Distance": 0.0,
+      "TotalTime": 5.0,
+      "Speed": 0.0,
+      "Rating": 10
+    }
+  ]
+}

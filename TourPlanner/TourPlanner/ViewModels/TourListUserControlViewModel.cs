@@ -81,10 +81,14 @@ namespace TourPlanner.ViewModels
             _log.Debug("DeleteTour klicked");
             if (CurrentItem != null)
             {
-                _tourPlannerFactory.DeleteTour(CurrentItem, CurrentItem.ImagePath);
-                _mainViewModel.searchUcViewModel.Items.Remove(CurrentItem);
-                _mainViewModel.tourInfoUcViewModel.TourLogs.Clear();
-                CurrentItem = null;
+                if (CurrentItem.TourHasImage())
+                {
+                    _tourPlannerFactory.DeleteTour(CurrentItem, CurrentItem.ImagePath);
+                    CurrentItem.ImagePath = null;
+                    _mainViewModel.searchUcViewModel.Items.Remove(CurrentItem);
+                    _mainViewModel.tourInfoUcViewModel.TourLogs.Clear();
+                    CurrentItem = null;
+                }
             }
             else 
             {

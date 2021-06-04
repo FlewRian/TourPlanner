@@ -2,7 +2,7 @@
 
 namespace TourPlanner.Model
 {
-    class Tour_LogJson
+    public class Tour_LogJson
     {
         public IEnumerable<Tour> Tours { get; set; }
         public IEnumerable<TourLog> TourLogs { get; set; }

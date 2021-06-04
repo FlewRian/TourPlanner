@@ -35,7 +35,7 @@ namespace TourPlanner.Model
             this.ImagePath = imagePath;
         }
 
-        public bool HasImage()
+        public bool TourHasImage()
         {
             if(ImagePath.Equals(@"C:\Users\Flori\source\repos\SWE2_Repos\TourPlanner\TourPlanner\TourPlanner\Images\No_Image_Icon.png"))
                 return false;

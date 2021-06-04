@@ -25,7 +25,6 @@ namespace TourPlanner.ViewModels
         private Window _window;
         private ITourPlannerFactory _tourPlannerFactory;
         private MainViewModel _mainViewModel;
-        private TourLog _newTourLog;
 
         public ICommand UpdateTourLogCommand => new RelayCommand(UpdateTourLog);
         public ICommand CancelEditTourLogCommand => new RelayCommand(CancelTourLogEdit);

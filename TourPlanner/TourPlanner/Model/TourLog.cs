@@ -11,7 +11,6 @@ namespace TourPlanner.Model
         public string Vehicle { get; set; }
         public string DateTime { get; set; }
         public int TourId { get; set; }
-        public string TourName { get; set; }
         public decimal Distance { get; set; }
         public decimal TotalTime { get; set; }
         public decimal Speed { get; set; }
