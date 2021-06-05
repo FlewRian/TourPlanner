@@ -9,16 +9,22 @@ namespace TourPlanner.BusinessLayer.Json
 {
     public class JsonManager : IJsonManager
     {
+        private ISaveFile _saveFileDialog;
+        private IOpenFile _openFileDialog;
+        public JsonManager(ISaveFile saveFileDialog, IOpenFile openFileDialog)
+        {
+            _saveFileDialog = saveFileDialog;
+            _openFileDialog = openFileDialog;
+        }
         public bool JsonExport(IEnumerable<Tour> tours, IEnumerable<TourLog> tourLogs)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();  
-            saveFileDialog.Filter = "Json Files (*.json) | *.json";
-            saveFileDialog.ShowDialog();
-            if (!saveFileDialog.FileName.Equals(""))
+            _saveFileDialog.Filter = "Json Files (*.json) | *.json";
+            _saveFileDialog.ShowDialog();
+            if (!_saveFileDialog.FileName.Equals(""))
             {
                 Tour_LogJson data = new Tour_LogJson(tours, tourLogs);
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
-                File.WriteAllText(saveFileDialog.FileName, json);
+                File.WriteAllText(_saveFileDialog.FileName, json);
                 return true;
             }
             return false;
@@ -26,12 +32,11 @@ namespace TourPlanner.BusinessLayer.Json
 
         public Tour_LogJson JsonImport()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();  
-            openFileDialog.Title = "Open a JSON TourPlanner File you want to import";  
-            openFileDialog.Filter = "Json Files (*.json) | *.json";
-            openFileDialog.ShowDialog();  
-            if (!openFileDialog.FileName.Equals("")) {  
-                StreamReader streamReader = new StreamReader(openFileDialog.FileName);
+            _openFileDialog.Title = "Open a JSON TourPlanner File you want to import";  
+            _openFileDialog.Filter = "Json Files (*.json) | *.json";
+            _openFileDialog.ShowDialog();  
+            if (!_openFileDialog.FileName.Equals("")) {  
+                StreamReader streamReader = new StreamReader(_openFileDialog.FileName);
                 string json = streamReader.ReadToEnd();  
                 streamReader.Close();
                 return JsonConvert.DeserializeObject<Tour_LogJson>(json);

@@ -29,7 +29,7 @@
       "DateTime": "DateTime",
       "TourId": 1,
       "TourName": null,
-      "Distance": 1
+      "Distance": 1,
       "TotalTime": 1,
       "Speed": 0.0,
       "Rating": 1

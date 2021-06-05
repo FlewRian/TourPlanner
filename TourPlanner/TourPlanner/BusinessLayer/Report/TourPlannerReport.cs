@@ -9,18 +9,24 @@ using TourPlanner.Model;
 
 namespace TourPlanner.BusinessLayer.Report
 {
-    class TourPlannerReport : ITourPlannerReport
+    public class TourPlannerReport : ITourPlannerReport
     {
-        public bool GenerateReportPDF(Tour currentTour, IEnumerable<TourLog> tourLogs, bool logSummary)
+        private ISaveFile _saveFile;
+
+        public TourPlannerReport(ISaveFile saveFile)
         {
-            SaveFileDialog sfdlg = new SaveFileDialog();  
-            sfdlg.Filter = "PDF Files (*.pdf) | *.pdf"; //Here you can filter which all files you wanted allow to open  
-            sfdlg.ShowDialog();
-            if (!sfdlg.FileName.Equals(""))
+            _saveFile = saveFile;
+        }
+
+        public bool GenerateReportPDF(Tour currentTour, IEnumerable<TourLog> tourLogs, bool logSummary)
+        { 
+            _saveFile.Filter = "PDF Files (*.pdf) | *.pdf"; //Here you can filter which all files you wanted allow to open  
+            _saveFile.ShowDialog();
+            if (!_saveFile.FileName.Equals(""))
             {
                 var htmlToPdf = new HtmlToPdf();
                 var pdf = htmlToPdf.RenderHtmlAsPdf(ConvertToHTML(currentTour, tourLogs, logSummary));
-                pdf.SaveAs(sfdlg.FileName);
+                pdf.SaveAs(_saveFile.FileName);
                 return true;
             }
 

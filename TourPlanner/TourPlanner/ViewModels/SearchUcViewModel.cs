@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
@@ -112,6 +111,7 @@ namespace TourPlanner.ViewModels
             if (_tourPlannerFactory.JsonImport())
             {
                 _log.Info("Json was successfully imported");
+                Items.Clear();
                 FillListBox();
                 MessageBox.Show("Json successfully imported!", "JSON Import", MessageBoxButton.OK, MessageBoxImage.Information);
             }

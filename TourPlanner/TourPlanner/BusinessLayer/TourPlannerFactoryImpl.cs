@@ -124,20 +124,20 @@ namespace TourPlanner.BusinessLayer
 
         public bool GenerateReportPDF(Tour currentTour, IEnumerable<TourLog> tourLogs)
         {
-            TourPlannerReport report = new TourPlannerReport();
+            TourPlannerReport report = new TourPlannerReport(new SaveFile());
             return report.GenerateReportPDF(currentTour, tourLogs, false);
         }
 
         public bool GenerateSummary(Tour currentTour)
         {
-            TourPlannerReport report = new TourPlannerReport();
+            TourPlannerReport report = new TourPlannerReport(new SaveFile());
             ITourLogDAO tourLogDao = DALFactory.CreateTourLogDAO();
             return report.GenerateReportPDF(currentTour, tourLogDao.GetAllTourLogs(), true);
         }
 
         public bool JsonExport()
         {
-            IJsonManager jsonManager = new JsonManager();
+            IJsonManager jsonManager = new JsonManager(new SaveFile(),new OpenFile());
             ITourLogDAO tourLogDao = DALFactory.CreateTourLogDAO();
             ITourDAO tourDao = DALFactory.CreateTourDAO();
 
@@ -149,7 +149,7 @@ namespace TourPlanner.BusinessLayer
 
         public bool JsonImport()
         {
-            IJsonManager jsonManager = new JsonManager();
+            IJsonManager jsonManager = new JsonManager(new SaveFile(),new OpenFile());
             Tour_LogJson jsonData = jsonManager.JsonImport();
 
             if (jsonData != null)

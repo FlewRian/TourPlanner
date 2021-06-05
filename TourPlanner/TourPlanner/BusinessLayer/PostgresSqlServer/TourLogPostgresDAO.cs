@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Diagnostics;
 using System.Linq;
 using TourPlanner.DataAccessLayer.Common;
 using TourPlanner.DataAccessLayer.DAO;
@@ -37,11 +36,6 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
         public TourLogPostgresDAO()
         {
             this._database = DALFactory.GetDatabase();
-        }
-
-        public TourLogPostgresDAO(IDatabase database, ITourDAO tourDao)
-        {
-            this._database = database;
         }
 
         public TourLog AddNewTourLog(string name, string description, string report, string vehicle, string dateTime, int tourId, decimal distance, decimal totalTime, int rating)

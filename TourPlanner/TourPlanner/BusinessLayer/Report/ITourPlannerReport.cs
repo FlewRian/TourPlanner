@@ -5,7 +5,7 @@ using TourPlanner.Model;
 
 namespace TourPlanner.BusinessLayer.Report
 {
-    interface ITourPlannerReport
+    public interface ITourPlannerReport
     {
         public bool GenerateReportPDF(Tour tour, IEnumerable<TourLog> tourLogs, bool logSummery);
     }

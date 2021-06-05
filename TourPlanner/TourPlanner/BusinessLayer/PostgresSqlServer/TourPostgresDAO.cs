@@ -33,11 +33,6 @@ namespace TourPlanner.BusinessLayer.PostgresSqlServer
             this._database = DALFactory.GetDatabase();
         }
 
-        public TourPostgresDAO(IDatabase database)
-        {
-            this._database = database;
-        }
-
         public Tour AddNewItem(string name, string description, string start, string end, int distance, string imagePath)
         {
             DbCommand insertCommand = _database.CreateCommand(SQL_INSERT_NEW_TOUR);
