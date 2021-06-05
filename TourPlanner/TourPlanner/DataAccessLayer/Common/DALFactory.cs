@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.DirectoryServices;
 using System.Reflection;
 using TourPlanner.DataAccessLayer.DAO;
 

@@ -83,7 +83,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding DateTime}" Header="Date/Time" Width="2*">
+                    <DataGridTextColumn Binding="{Binding DateTime}" Header="Date (dd/mm/yyy)" Width="2*">
                         <DataGridTextColumn.ElementStyle>
                             <Style>
                                 <Setter Property="TextBlock.TextWrapping" Value="Wrap" />

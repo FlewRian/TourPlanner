@@ -32,17 +32,6 @@ namespace TourPlanner.ViewModels
             this._tourPlannerFactory = TourPlannerFactory.GetInstance();
         }
 
-        public TourAddViewModel()
-        {
-            this._tourPlannerFactory = TourPlannerFactory.GetInstance();
-        }
-
-        public TourAddViewModel(Window window)
-        {
-            this._window = window;
-            this._tourPlannerFactory = TourPlannerFactory.GetInstance();
-        }
-
         public string Name
         {
             get {

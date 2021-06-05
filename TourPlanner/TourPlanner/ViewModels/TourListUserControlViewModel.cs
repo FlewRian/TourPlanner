@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
 using TourPlanner.Factory.Window;
@@ -41,12 +40,6 @@ namespace TourPlanner.ViewModels
                 }   
             }
         }
-
-        public TourListUserControlViewModel()
-        {
-            this._tourPlannerFactory = TourPlannerFactory.GetInstance();
-        }
-
         public TourListUserControlViewModel(MainViewModel mainViewModel)
         {
             this._mainViewModel = mainViewModel;

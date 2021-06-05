@@ -42,7 +42,7 @@
                  Text="{Binding Vehicle, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <Grid Grid.Row="4">
-            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Date (dd.mm.yyyy)*"/>
+            <Label HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="Date (dd/mm/yyyy)*"/>
             <TextBox Margin="10,30,10,0" VerticalAlignment="Top"
                  Text="{Binding DateTime, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>

@@ -42,12 +42,6 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public SearchUcViewModel()
-        {
-            this._tourPlannerFactory = TourPlannerFactory.GetInstance();
-            InitListbox();
-        }
-
         public SearchUcViewModel(MainViewModel mainViewModel)
         {
             this._tourPlannerFactory = TourPlannerFactory.GetInstance();
