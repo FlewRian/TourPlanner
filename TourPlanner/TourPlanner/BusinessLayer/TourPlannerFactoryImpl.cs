@@ -13,14 +13,14 @@ namespace TourPlanner.BusinessLayer
 
         public IEnumerable<Tour> GetItems()
         {
-            ITourDAO tourDAO = DALFactory.CreateTourDAO();
-            return tourDAO.GetTours();
+            ITourDAO tourDao = DALFactory.CreateTourDAO();
+            return tourDao.GetTours();
         }
 
         public IEnumerable<TourLog> GetTourLogs(Tour tour)
         {
-            ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
-            return tourLogDAO.GetTourLogs(tour);
+            ITourLogDAO tourLogDao = DALFactory.CreateTourLogDAO();
+            return tourLogDao.GetTourLogs(tour);
         }
 
         public IEnumerable<Tour> Search(string itemName, bool caseSensitive = false)
@@ -57,30 +57,23 @@ namespace TourPlanner.BusinessLayer
 
         public Tour CreateTour(string name, string description, string start, string end, int distance)
         {
-            ITourDAO tourDAO = DALFactory.CreateTourDAO();
+            ITourDAO tourDao = DALFactory.CreateTourDAO();
             IMapQuest mapQuest = new MapQuest.MapQuest();
             string imagePath = mapQuest.LoadImage(start, end);
-            return tourDAO.AddNewItem(name, description, start, end, distance, imagePath);
+            return tourDao.AddNewItem(name, description, start, end, distance, imagePath);
         }
 
         public TourLog CreateTourLog(string name, string description, string report, string vehicle, string dateTime,
             int tourId, decimal distance, decimal totalTime, int rating)
         {
-            ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
-            return tourLogDAO.AddNewTourLog(name, description, report, vehicle, dateTime, tourId, distance, totalTime,
+            ITourLogDAO tourLogDao = DALFactory.CreateTourLogDAO();
+            return tourLogDao.AddNewTourLog(name, description, report, vehicle, dateTime, tourId, distance, totalTime,
                 rating);
         }
 
         public void DeleteTour(Tour tour, string imagePath)
         {
             ITourDAO tourDao = DALFactory.CreateTourDAO();
-
-            if (!imagePath.Equals(""))
-            {
-                /*Image tempImage = Image.FromFile(imagePath);
-                tempImage.Dispose();
-                File.Delete(imagePath);*/
-            }
 
             tourDao.DeleteTour(tour);
         }
